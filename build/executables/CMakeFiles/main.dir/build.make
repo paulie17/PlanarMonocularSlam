@@ -53,10 +53,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/paolo/Documents/09-PlanarMonocularSlam_one_person
+CMAKE_SOURCE_DIR = /home/paolo/Documents/PlanarMonocularSlam
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build
+CMAKE_BINARY_DIR = /home/paolo/Documents/PlanarMonocularSlam/build
 
 # Include any dependencies generated for this target.
 include executables/CMakeFiles/main.dir/depend.make
@@ -72,58 +72,58 @@ include executables/CMakeFiles/main.dir/flags.make
 executables/CMakeFiles/main.dir/main.cpp.o: executables/CMakeFiles/main.dir/flags.make
 executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp
 executables/CMakeFiles/main.dir/main.cpp.o: executables/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object executables/CMakeFiles/main.dir/main.cpp.o"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT executables/CMakeFiles/main.dir/main.cpp.o -MF CMakeFiles/main.dir/main.cpp.o.d -o CMakeFiles/main.dir/main.cpp.o -c /home/paolo/Documents/09-PlanarMonocularSlam_one_person/executables/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paolo/Documents/PlanarMonocularSlam/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object executables/CMakeFiles/main.dir/main.cpp.o"
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT executables/CMakeFiles/main.dir/main.cpp.o -MF CMakeFiles/main.dir/main.cpp.o.d -o CMakeFiles/main.dir/main.cpp.o -c /home/paolo/Documents/PlanarMonocularSlam/executables/main.cpp
 
 executables/CMakeFiles/main.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/main.cpp.i"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paolo/Documents/09-PlanarMonocularSlam_one_person/executables/main.cpp > CMakeFiles/main.dir/main.cpp.i
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paolo/Documents/PlanarMonocularSlam/executables/main.cpp > CMakeFiles/main.dir/main.cpp.i
 
 executables/CMakeFiles/main.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/main.cpp.s"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paolo/Documents/09-PlanarMonocularSlam_one_person/executables/main.cpp -o CMakeFiles/main.dir/main.cpp.s
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paolo/Documents/PlanarMonocularSlam/executables/main.cpp -o CMakeFiles/main.dir/main.cpp.s
 
 executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o: executables/CMakeFiles/main.dir/flags.make
 executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o: ../src/dataset_utils.cpp
 executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o: executables/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o -MF CMakeFiles/main.dir/__/src/dataset_utils.cpp.o.d -o CMakeFiles/main.dir/__/src/dataset_utils.cpp.o -c /home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/dataset_utils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paolo/Documents/PlanarMonocularSlam/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o"
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o -MF CMakeFiles/main.dir/__/src/dataset_utils.cpp.o.d -o CMakeFiles/main.dir/__/src/dataset_utils.cpp.o -c /home/paolo/Documents/PlanarMonocularSlam/src/dataset_utils.cpp
 
 executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/__/src/dataset_utils.cpp.i"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/dataset_utils.cpp > CMakeFiles/main.dir/__/src/dataset_utils.cpp.i
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paolo/Documents/PlanarMonocularSlam/src/dataset_utils.cpp > CMakeFiles/main.dir/__/src/dataset_utils.cpp.i
 
 executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/__/src/dataset_utils.cpp.s"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/dataset_utils.cpp -o CMakeFiles/main.dir/__/src/dataset_utils.cpp.s
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paolo/Documents/PlanarMonocularSlam/src/dataset_utils.cpp -o CMakeFiles/main.dir/__/src/dataset_utils.cpp.s
 
 executables/CMakeFiles/main.dir/__/src/camera.cpp.o: executables/CMakeFiles/main.dir/flags.make
 executables/CMakeFiles/main.dir/__/src/camera.cpp.o: ../src/camera.cpp
 executables/CMakeFiles/main.dir/__/src/camera.cpp.o: executables/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object executables/CMakeFiles/main.dir/__/src/camera.cpp.o"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT executables/CMakeFiles/main.dir/__/src/camera.cpp.o -MF CMakeFiles/main.dir/__/src/camera.cpp.o.d -o CMakeFiles/main.dir/__/src/camera.cpp.o -c /home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/camera.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paolo/Documents/PlanarMonocularSlam/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object executables/CMakeFiles/main.dir/__/src/camera.cpp.o"
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT executables/CMakeFiles/main.dir/__/src/camera.cpp.o -MF CMakeFiles/main.dir/__/src/camera.cpp.o.d -o CMakeFiles/main.dir/__/src/camera.cpp.o -c /home/paolo/Documents/PlanarMonocularSlam/src/camera.cpp
 
 executables/CMakeFiles/main.dir/__/src/camera.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/__/src/camera.cpp.i"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/camera.cpp > CMakeFiles/main.dir/__/src/camera.cpp.i
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paolo/Documents/PlanarMonocularSlam/src/camera.cpp > CMakeFiles/main.dir/__/src/camera.cpp.i
 
 executables/CMakeFiles/main.dir/__/src/camera.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/__/src/camera.cpp.s"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/camera.cpp -o CMakeFiles/main.dir/__/src/camera.cpp.s
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paolo/Documents/PlanarMonocularSlam/src/camera.cpp -o CMakeFiles/main.dir/__/src/camera.cpp.s
 
 executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o: executables/CMakeFiles/main.dir/flags.make
 executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o: ../src/pms_solver.cpp
 executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o: executables/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o -MF CMakeFiles/main.dir/__/src/pms_solver.cpp.o.d -o CMakeFiles/main.dir/__/src/pms_solver.cpp.o -c /home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/pms_solver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paolo/Documents/PlanarMonocularSlam/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o"
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o -MF CMakeFiles/main.dir/__/src/pms_solver.cpp.o.d -o CMakeFiles/main.dir/__/src/pms_solver.cpp.o -c /home/paolo/Documents/PlanarMonocularSlam/src/pms_solver.cpp
 
 executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/__/src/pms_solver.cpp.i"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/pms_solver.cpp > CMakeFiles/main.dir/__/src/pms_solver.cpp.i
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paolo/Documents/PlanarMonocularSlam/src/pms_solver.cpp > CMakeFiles/main.dir/__/src/pms_solver.cpp.i
 
 executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/__/src/pms_solver.cpp.s"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/pms_solver.cpp -o CMakeFiles/main.dir/__/src/pms_solver.cpp.s
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paolo/Documents/PlanarMonocularSlam/src/pms_solver.cpp -o CMakeFiles/main.dir/__/src/pms_solver.cpp.s
 
 # Object files for target main
 main_OBJECTS = \
@@ -144,18 +144,18 @@ executables/main: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0
 executables/main: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
 executables/main: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.71.0
 executables/main: executables/CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable main"
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/paolo/Documents/PlanarMonocularSlam/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable main"
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 executables/CMakeFiles/main.dir/build: executables/main
 .PHONY : executables/CMakeFiles/main.dir/build
 
 executables/CMakeFiles/main.dir/clean:
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables && $(CMAKE_COMMAND) -P CMakeFiles/main.dir/cmake_clean.cmake
+	cd /home/paolo/Documents/PlanarMonocularSlam/build/executables && $(CMAKE_COMMAND) -P CMakeFiles/main.dir/cmake_clean.cmake
 .PHONY : executables/CMakeFiles/main.dir/clean
 
 executables/CMakeFiles/main.dir/depend:
-	cd /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/paolo/Documents/09-PlanarMonocularSlam_one_person /home/paolo/Documents/09-PlanarMonocularSlam_one_person/executables /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables /home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/paolo/Documents/PlanarMonocularSlam/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/paolo/Documents/PlanarMonocularSlam /home/paolo/Documents/PlanarMonocularSlam/executables /home/paolo/Documents/PlanarMonocularSlam/build /home/paolo/Documents/PlanarMonocularSlam/build/executables /home/paolo/Documents/PlanarMonocularSlam/build/executables/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : executables/CMakeFiles/main.dir/depend
 

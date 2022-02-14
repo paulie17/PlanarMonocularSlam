@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/camera.cpp" "executables/CMakeFiles/main.dir/__/src/camera.cpp.o" "gcc" "executables/CMakeFiles/main.dir/__/src/camera.cpp.o.d"
-  "/home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/dataset_utils.cpp" "executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o" "gcc" "executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o.d"
-  "/home/paolo/Documents/09-PlanarMonocularSlam_one_person/src/pms_solver.cpp" "executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o" "gcc" "executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o.d"
-  "/home/paolo/Documents/09-PlanarMonocularSlam_one_person/executables/main.cpp" "executables/CMakeFiles/main.dir/main.cpp.o" "gcc" "executables/CMakeFiles/main.dir/main.cpp.o.d"
+  "/home/paolo/Documents/PlanarMonocularSlam/src/camera.cpp" "executables/CMakeFiles/main.dir/__/src/camera.cpp.o" "gcc" "executables/CMakeFiles/main.dir/__/src/camera.cpp.o.d"
+  "/home/paolo/Documents/PlanarMonocularSlam/src/dataset_utils.cpp" "executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o" "gcc" "executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o.d"
+  "/home/paolo/Documents/PlanarMonocularSlam/src/pms_solver.cpp" "executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o" "gcc" "executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o.d"
+  "/home/paolo/Documents/PlanarMonocularSlam/executables/main.cpp" "executables/CMakeFiles/main.dir/main.cpp.o" "gcc" "executables/CMakeFiles/main.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.

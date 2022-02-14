@@ -10,6 +10,7 @@ namespace pr {
         Eigen::Vector3f current_camera;
 
         std::vector<int>::iterator it;
+        int k;
 
         int n_of_corrispondences;
 
@@ -32,10 +33,11 @@ namespace pr {
                                 measurements[j].detected_landmarks.end(),i);  
 
                 if (it != measurements[j].detected_landmarks.end()){
-                    n_of_corrispondences ++;                    
+                    n_of_corrispondences ++;    
+                    k = distance(measurements[j].detected_landmarks.begin(),it);                
                     //std::cout << "Landmark " << i << " observed in measurement " << j << " with index " << k << std::endl;
                                    
-                    current_bearing = measurements[j].bearings[*it];
+                    current_bearing = measurements[j].bearings[k];
                     current_camera = measurements[j].current_camera_position.cameraToWorldPose().translation();                                        
             
                     A(0,0) += 1-current_bearing(0)*current_bearing(0);
@@ -70,6 +72,7 @@ namespace pr {
             solution = A.colPivHouseholderQr().solve(b);                 
             }
             landmarks_initial_guess.push_back(solution);
+
             A.setZero();
             b.setZero();
         }

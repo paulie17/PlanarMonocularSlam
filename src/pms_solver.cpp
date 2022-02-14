@@ -19,16 +19,17 @@ namespace pr {
                             Vector3fVector& landmarks,
                             const MeasVector& measurements){         
 
-        int state_size = odom_traj.size()*3 + landmarks.size()*3;
+        _state_size = odom_traj.size()*3 + landmarks.size()*3;
 
-        _n_of_landmarks = landmarks.size();
-        _H.resize(state_size,state_size);
-        _b.resize(state_size);  
-        _delta_x.resize(state_size);                     
+        _n_of_landmarks = landmarks.size();                   
 
         _odom_traj_estimate = &odom_traj;
         _landmarks_estimate = &landmarks;
         _measurements = &measurements;     
+
+        _H.resize(_state_size,_state_size);
+        _b.resize(_state_size);  
+        _delta_x.resize(_state_size);  
 
         for (int k = 1; k < NUM_MEASUREMENTS; ++k) {
             // TODO: displ can be determined more efficiently with
@@ -57,7 +58,8 @@ namespace pr {
 
         Eigen::Isometry3f robot_to_world;
 
-        std::vector<int>::const_iterator j;                        
+        std::vector<int>::const_iterator j;       
+        int k;                 
         
         J_proj_landmark.setZero();
         J_proj_pose.setZero();
@@ -91,10 +93,15 @@ namespace pr {
         j = std::find ( (*_measurements)[pose_idx].detected_landmarks.begin(), 
                         (*_measurements)[pose_idx].detected_landmarks.end(), 
                         landmark_idx);
+        k = distance((*_measurements)[pose_idx].detected_landmarks.begin(),j); 
 
-        proj_observation = (*_measurements)[pose_idx].landmarks_img_pts[*j]; 
+        proj_observation = (*_measurements)[pose_idx].landmarks_img_pts[k]; 
 
-        proj_error = proj_prediction - proj_observation;                                           
+        proj_error = proj_prediction - proj_observation;  
+
+        /*std::cout << "This is the error of the projection of landmark " << landmark_idx <<" from pose " << pose_idx << "\n";
+        std::cout << proj_error << "\n";
+        std::cin.get();     */                                    
         
         J_pi << 1.0f/p_hat.z(), 0.0f, -p_hat.x()/std::pow(p_hat.z(), 2.0f),
                 0.0f, 1.0f/p_hat.z(), -p_hat.y()/std::pow(p_hat.z(), 2.0f);
@@ -107,9 +114,9 @@ namespace pr {
 
     void pms_solver::errorAndJacobian_odom( int pose_i_idx, 
                                 int pose_j_idx, 
-                                Matrix2_3f& J_odom_pose_i,
-                                Matrix2_3f& J_odom_pose_j,
-                                Eigen::Vector2f& odom_error){
+                                Matrix6_3f& J_odom_pose_i,
+                                Matrix6_3f& J_odom_pose_j,
+                                Vector6f& odom_error){
 
         Eigen::Vector3f pose_i;
         Eigen::Vector3f pose_j;
@@ -120,32 +127,28 @@ namespace pr {
         Eigen::Matrix2f R_j;
         Eigen::Vector2f t_j;
 
-        Eigen::Matrix2f Z_R;  
-        Eigen::Vector2f Z_t;  
+        Eigen::Isometry2f Z;
 
         Eigen::Isometry2f odom_error_transform;    
+                
+        J_odom_pose_i.setZero();
+        J_odom_pose_j.setZero();
 
         pose_i = (*_odom_traj_estimate)[pose_i_idx]; 
         pose_j = (*_odom_traj_estimate)[pose_j_idx];
 
-        R_i = v2t(pose_i).linear();
-        t_i = v2t(pose_i).translation();
-
+        R_i = v2t(pose_i).linear();        
         R_j = v2t(pose_j).linear();
         t_j = v2t(pose_j).translation();
 
-        Z_R = v2t(_odometry_displacements[pose_i_idx]).linear();
-        Z_t = v2t(_odometry_displacements[pose_i_idx]).translation();
+        Z = v2t(_odometry_displacements[pose_i_idx]);     
 
-        J_odom_pose_i.block<2,2>(0,0) = -Z_R.inverse()*R_i.inverse();
-        J_odom_pose_i.block<2,1>(2,0) = -Z_R.inverse()*R_i.inverse()*dRz(0).block<2,2>(0,0)*t_i;        
+        J_odom_pose_j.block<2,2>(4,0) = R_i.transpose();
+        J_odom_pose_j.block<4,1>(2,4) = flatten(R_i.transpose()*dR_2d(0)*R_j);
+        J_odom_pose_j.block<2,1>(4,2) = -R_i.transpose()*dR_2d(0)*t_j;
+        J_odom_pose_i = -J_odom_pose_j;
 
-        J_odom_pose_j.block<2,2>(0,0) = Z_R.inverse()*R_i.inverse();
-        J_odom_pose_j.block<2,1>(2,0) = Z_R.inverse()*R_i.inverse()*dRz(0).block<2,2>(0,0)*t_j;
-
-        odom_error_transform.translation() = Z_R.inverse()*R_i.inverse()*(t_j-t_i-Z_t);
-        odom_error_transform.linear() = Z_R.inverse()*R_i.inverse()*R_j;
-        odom_error = odom_error_transform.translation();
+        odom_error = flatten((v2t(pose_i).inverse()*v2t(pose_j)).matrix())-flatten(Z.matrix());
     }    
 
     void pms_solver::boxplus(){
@@ -153,8 +156,13 @@ namespace pr {
         int landmark_idx, pose_idx;
         Eigen::Vector3f pose_increment;
 
-        for (int i = 0;i<_n_of_landmarks-1; i++){
+        for (int i = 0;i<_n_of_landmarks; i++){
             landmark_idx = 3*NUM_MEASUREMENTS + (i)*3; 
+            
+            if (isNan((*_landmarks_estimate)[i])){
+            continue;
+            }
+            
             (*_landmarks_estimate)[i] += _delta_x.segment<3>(landmark_idx);
         }
 
@@ -182,12 +190,13 @@ namespace pr {
         Matrix2_3f J_proj_pose;
         Eigen::Vector2f proj_error;        
 
-        Matrix2_3f J_odom_pose_i;
-        Matrix2_3f J_odom_pose_j;
-        Eigen::Vector2f odom_error;                               
+        Matrix6_3f J_odom_pose_i;
+        Matrix6_3f J_odom_pose_j;
+        Vector6f odom_error;                               
 
         _H.setZero();
-        _b.setZero();        
+        _b.setZero();  
+        _delta_x.setZero();       
 
         _chi_odom = 0.0;
         _chi_proj = 0.0;
@@ -218,11 +227,11 @@ namespace pr {
                 _b.segment<3>(landmark_H_idx) += J_proj_landmark.transpose() * proj_error;
 
                 _chi_proj += proj_error.transpose()*proj_error;        
-                /*if (std::isinf(_chi_proj) || std::isnan(_chi_proj)){
+                if (std::isinf(_chi_proj) || std::isnan(_chi_proj)){
                     std::cout << "The following measurement is causing a problem: \n";
                     std::cout << "Pose: " << pose_idx <<", Landmark: " << landmark_idx << "\n"; 
                     std::cin.get();
-                }    */                    
+                }                        
             }
             //std::cout << _chi_proj << std::endl ;
             //std::cin.get();
@@ -256,9 +265,5 @@ namespace pr {
         std::cout << "Chi proj: " << _chi_proj << std::endl;
 
         std::cin.get();
-
     }
-
-
-
 }

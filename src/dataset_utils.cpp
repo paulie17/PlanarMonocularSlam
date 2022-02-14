@@ -114,7 +114,7 @@ namespace pr{
 
         int z_near,z_far;
         int width, height;
-        int n_of_landmarks;
+        int n_of_landmarks = 0;
         
         
         for (int k = 0; k < NUM_MEASUREMENTS; k++){

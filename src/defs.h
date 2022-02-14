@@ -1,7 +1,6 @@
 #pragma once
 #include <Eigen/Core>
 #include <Eigen/Geometry>
-#include <Eigen/Cholesky>
 #include <Eigen/StdVector>
 #include <iostream>
 
@@ -20,6 +19,7 @@ namespace pr {
     typedef Eigen::Matrix<float, 4, 6> Matrix4_6f;
     typedef Eigen::Matrix<float, 2, 6> Matrix2_6f;
     typedef Eigen::Matrix<float, 3, 6> Matrix3_6f;
+    typedef Eigen::Matrix<float, 6, 3> Matrix6_3f;
 
     typedef Eigen::Matrix<float, 6, 6> Matrix6f;
     typedef Eigen::Matrix<float, 6, 1> Vector6f;
@@ -138,6 +138,15 @@ namespace pr {
         return R;
     }
 
+    inline Eigen::Matrix2f dR_2d(float rot){
+        float c=cos(rot);
+        float s=sin(rot);
+        Eigen::Matrix2f R;
+        R << -s,  -c,
+        c,  -s;
+        return R;
+    }
+
     
     inline Eigen::Isometry3f v2tEuler(const Vector6f& v){
         Eigen::Isometry3f T;
@@ -166,4 +175,13 @@ namespace pr {
     inline Eigen::Vector4f to_homogeneous(const Eigen::Vector3f& v){
         return Eigen::Vector4f(v.x(), v.y(), v.z(), 1.0f);
     }    
+
+    inline Eigen::VectorXf flatten(const Eigen::MatrixXf& m){
+        Eigen::VectorXf flattened(m.size());
+        for (int c = 0; c < m.cols(); c++) {
+            flattened.segment(c * m.rows(), m.rows()) = m.col(c);
+        }
+        return flattened;
+    }
+
 }

@@ -24,17 +24,17 @@ int main(){
     MeasVector measurements;
     Vector3fVector landmarks_gt;
 
-    /*vector<double> x_traj, y_traj, z_traj;
+    Vector3fVector landmarks; 
+
+    //vector<double> x_traj, y_traj, z_traj;
     vector<double> x_l_gt, y_l_gt, z_l_gt;
-    vector<double> x_l, y_l, z_l;*/
+    vector<double> x_l, y_l, z_l;
 
     pms_solver solver;
 
     int n_iterations = 10;
 
-    odom_trajectory = load_trajectory();
-
-    Vector3fVector landmarks;  
+    odom_trajectory = load_trajectory();     
     
     /*for (int i = 0; i < NUM_MEASUREMENTS; i++){
         x_traj.push_back(odom_trajectory[i](0));
@@ -52,11 +52,11 @@ int main(){
 
     landmarks_gt = load_landmarks_gt();
 
-    /*for (int i = 0; i < NUM_LANDMARKS; i++){
+    for (int i = 0; i < (n_of_landmarks + 1); i++){
         x_l_gt.push_back(landmarks_gt[i](0));
         y_l_gt.push_back(landmarks_gt[i](1));
         z_l_gt.push_back(landmarks_gt[i](2));
-    }*/
+    }
 
     //gp << "splot '-' using 1:2:3 with lines lt rgb 'red' title 'Trajectory',"
     //    << "'-' using 1:2:3 with points lt rgb 'red' title 'Landmarks GroundTruth'" << endl;
@@ -68,15 +68,15 @@ int main(){
 
     //cin.get();
 
-    landmarks = initial_guess(measurements,n_of_landmarks);
-    
-    /*for (int i = 0; i < NUM_LANDMARKS; i++){
+    landmarks = initial_guess(measurements,n_of_landmarks + 1);
+
+    for (int i = 0; i < (n_of_landmarks + 1); i++){
         x_l.push_back(landmarks[i](0));
         y_l.push_back(landmarks[i](1));
         z_l.push_back(landmarks[i](2));
     }
     
-    gp << "splot '-' using 1:2:3 with points lt rgb 'red' title 'Landmarks GroundTruth',"
+    /*gp << "splot '-' using 1:2:3 with points lt rgb 'red' title 'Landmarks GroundTruth',"
         << "'-' using 1:2:3 with points lt rgb 'blue' title 'Landmarks Initial Guess'" << endl; 
     gp.send1d(boost::make_tuple(x_l_gt, y_l_gt, z_l_gt));
     gp.send1d(boost::make_tuple(x_l, y_l, z_l));
@@ -84,7 +84,7 @@ int main(){
 
     solver.init(odom_trajectory,landmarks,measurements);
 
-    for (int i = 0;i < n_iterations; i++){
+    for (int i = 0; i < n_iterations; i++){
         solver.one_round();
     }    
 

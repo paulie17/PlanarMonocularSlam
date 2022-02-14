@@ -1,4 +1,4 @@
-# Install script for directory: /home/paolo/Documents/09-PlanarMonocularSlam_one_person/executables
+# Install script for directory: /home/paolo/Documents/PlanarMonocularSlam/executables
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

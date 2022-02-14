@@ -392,7 +392,6 @@ executables/CMakeFiles/main.dir/__/src/camera.cpp.o: ../src/camera.cpp \
   /usr/include/eigen3/Eigen/src/Geometry/AlignedBox.h \
   /usr/include/eigen3/Eigen/src/Geometry/Umeyama.h \
   /usr/include/eigen3/Eigen/src/Geometry/arch/Geometry_SSE.h \
-  /usr/include/eigen3/Eigen/Cholesky \
   /usr/include/eigen3/Eigen/StdVector \
   /usr/include/c++/9/vector \
   /usr/include/c++/9/bits/stl_uninitialized.h \
@@ -794,7 +793,6 @@ executables/CMakeFiles/main.dir/__/src/dataset_utils.cpp.o: ../src/dataset_utils
   /usr/include/eigen3/Eigen/src/Geometry/AlignedBox.h \
   /usr/include/eigen3/Eigen/src/Geometry/Umeyama.h \
   /usr/include/eigen3/Eigen/src/Geometry/arch/Geometry_SSE.h \
-  /usr/include/eigen3/Eigen/Cholesky \
   /usr/include/eigen3/Eigen/StdVector \
   /usr/include/c++/9/vector \
   /usr/include/c++/9/bits/stl_uninitialized.h \
@@ -888,7 +886,8 @@ executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o: ../src/pms_solver.cpp \
   /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib.h \
-  ../src/defs.h \
+  /usr/include/eigen3/Eigen/Sparse \
+  /usr/include/eigen3/Eigen/SparseCore \
   /usr/include/eigen3/Eigen/Core \
   /usr/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
   /usr/include/c++/9/new \
@@ -1167,8 +1166,97 @@ executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o: ../src/pms_solver.cpp \
   /usr/include/eigen3/Eigen/src/Core/ArrayWrapper.h \
   /usr/include/eigen3/Eigen/src/Core/GlobalFunctions.h \
   /usr/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h \
-  /usr/include/eigen3/Eigen/Geometry \
+  /usr/include/c++/9/vector \
+  /usr/include/c++/9/bits/stl_uninitialized.h \
+  /usr/include/c++/9/bits/stl_vector.h \
+  /usr/include/c++/9/bits/stl_bvector.h \
+  /usr/include/c++/9/bits/vector.tcc \
+  /usr/include/c++/9/map \
+  /usr/include/c++/9/bits/stl_tree.h \
+  /usr/include/c++/9/ext/aligned_buffer.h \
+  /usr/include/c++/9/bits/stl_map.h \
+  /usr/include/c++/9/bits/stl_multimap.h \
+  /usr/include/c++/9/bits/erase_if.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseUtil.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseMatrixBase.h \
+  /usr/include/eigen3/Eigen/src/plugins/CommonCwiseUnaryOps.h \
+  /usr/include/eigen3/Eigen/src/plugins/CommonCwiseBinaryOps.h \
+  /usr/include/eigen3/Eigen/src/plugins/MatrixCwiseUnaryOps.h \
+  /usr/include/eigen3/Eigen/src/plugins/MatrixCwiseBinaryOps.h \
+  /usr/include/eigen3/Eigen/src/plugins/BlockMethods.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseAssign.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/CompressedStorage.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/AmbiVector.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseCompressedBase.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseMatrix.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseMap.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/MappedSparseMatrix.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseVector.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseRef.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseCwiseUnaryOp.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseCwiseBinaryOp.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseTranspose.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseBlock.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseDot.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseRedux.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseView.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseDiagonalProduct.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/ConservativeSparseSparseProduct.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseSparseProductWithPruning.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseProduct.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseDenseProduct.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseSelfAdjointView.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseTriangularView.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/TriangularSolver.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparsePermutation.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseFuzzy.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseSolverBase.h \
+  /usr/include/eigen3/Eigen/OrderingMethods \
+  /usr/include/eigen3/Eigen/src/OrderingMethods/Amd.h \
+  /usr/include/eigen3/Eigen/src/Core/util/NonMPL2.h \
+  /usr/include/eigen3/Eigen/src/OrderingMethods/Ordering.h \
+  /usr/include/eigen3/Eigen/src/OrderingMethods/Eigen_Colamd.h \
+  /usr/include/eigen3/Eigen/SparseCholesky \
+  /usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky.h \
+  /usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky_impl.h \
+  /usr/include/eigen3/Eigen/src/Core/util/NonMPL2.h \
+  /usr/include/eigen3/Eigen/SparseLU \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_gemm_kernel.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Structs.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_SupernodalMatrix.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLUImpl.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseColEtree.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Memory.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_heap_relax_snode.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_relax_snode.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_pivotL.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_panel_dfs.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_kernel_bmod.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_panel_bmod.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_column_dfs.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_column_bmod.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_copy_to_ucol.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_pruneL.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Utils.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU.h \
+  /usr/include/eigen3/Eigen/SparseQR \
+  /usr/include/eigen3/Eigen/src/SparseQR/SparseQR.h \
+  /usr/include/eigen3/Eigen/IterativeLinearSolvers \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/SolveWithGuess.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IterativeSolverBase.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/BasicPreconditioners.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/ConjugateGradient.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/LeastSquareConjugateGradient.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/BiCGSTAB.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h \
+  /usr/include/c++/9/list \
+  /usr/include/c++/9/bits/stl_list.h \
+  /usr/include/c++/9/bits/allocated_ptr.h \
+  /usr/include/c++/9/bits/list.tcc \
+  ../src/defs.h \
   /usr/include/eigen3/Eigen/Core \
+  /usr/include/eigen3/Eigen/Geometry \
   /usr/include/eigen3/Eigen/SVD \
   /usr/include/eigen3/Eigen/QR \
   /usr/include/eigen3/Eigen/Cholesky \
@@ -1212,13 +1300,7 @@ executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o: ../src/pms_solver.cpp \
   /usr/include/eigen3/Eigen/src/Geometry/AlignedBox.h \
   /usr/include/eigen3/Eigen/src/Geometry/Umeyama.h \
   /usr/include/eigen3/Eigen/src/Geometry/arch/Geometry_SSE.h \
-  /usr/include/eigen3/Eigen/Cholesky \
   /usr/include/eigen3/Eigen/StdVector \
-  /usr/include/c++/9/vector \
-  /usr/include/c++/9/bits/stl_uninitialized.h \
-  /usr/include/c++/9/bits/stl_vector.h \
-  /usr/include/c++/9/bits/stl_bvector.h \
-  /usr/include/c++/9/bits/vector.tcc \
   /usr/include/eigen3/Eigen/src/StlSupport/StdVector.h \
   /usr/include/eigen3/Eigen/src/StlSupport/details.h \
   /usr/include/c++/9/iostream \
@@ -1238,7 +1320,8 @@ executables/CMakeFiles/main.dir/__/src/pms_solver.cpp.o: ../src/pms_solver.cpp \
   /usr/include/libintl.h \
   /usr/include/c++/9/bits/locale_facets_nonio.tcc \
   /usr/include/c++/9/bits/locale_conv.h \
-  /usr/include/c++/9/bits/unique_ptr.h
+  /usr/include/c++/9/bits/unique_ptr.h \
+  /usr/include/eigen3/Eigen/Cholesky
 
 executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
   /usr/include/stdc-predef.h \
@@ -1655,7 +1738,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
   /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
   /usr/include/c++/9/bits/fstream.tcc \
   ../src/defs.h \
-  /usr/include/eigen3/Eigen/Cholesky \
   /usr/include/eigen3/Eigen/StdVector \
   /usr/include/c++/9/vector \
   /usr/include/c++/9/bits/stl_uninitialized.h \
@@ -2196,7 +2278,82 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
   ../src/dataset_utils.h \
   ../src/camera.h \
   ../src/bootstrap.h \
-  ../src/pms_solver.h
+  ../src/pms_solver.h \
+  /usr/include/eigen3/Eigen/Sparse \
+  /usr/include/eigen3/Eigen/SparseCore \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseUtil.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseMatrixBase.h \
+  /usr/include/eigen3/Eigen/src/plugins/CommonCwiseUnaryOps.h \
+  /usr/include/eigen3/Eigen/src/plugins/CommonCwiseBinaryOps.h \
+  /usr/include/eigen3/Eigen/src/plugins/MatrixCwiseUnaryOps.h \
+  /usr/include/eigen3/Eigen/src/plugins/MatrixCwiseBinaryOps.h \
+  /usr/include/eigen3/Eigen/src/plugins/BlockMethods.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseAssign.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/CompressedStorage.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/AmbiVector.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseCompressedBase.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseMatrix.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseMap.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/MappedSparseMatrix.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseVector.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseRef.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseCwiseUnaryOp.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseCwiseBinaryOp.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseTranspose.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseBlock.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseDot.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseRedux.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseView.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseDiagonalProduct.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/ConservativeSparseSparseProduct.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseSparseProductWithPruning.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseProduct.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseDenseProduct.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseSelfAdjointView.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseTriangularView.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/TriangularSolver.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparsePermutation.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseFuzzy.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseSolverBase.h \
+  /usr/include/eigen3/Eigen/OrderingMethods \
+  /usr/include/eigen3/Eigen/src/OrderingMethods/Amd.h \
+  /usr/include/eigen3/Eigen/src/Core/util/NonMPL2.h \
+  /usr/include/eigen3/Eigen/src/OrderingMethods/Ordering.h \
+  /usr/include/eigen3/Eigen/src/OrderingMethods/Eigen_Colamd.h \
+  /usr/include/eigen3/Eigen/SparseCholesky \
+  /usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky.h \
+  /usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky_impl.h \
+  /usr/include/eigen3/Eigen/src/Core/util/NonMPL2.h \
+  /usr/include/eigen3/Eigen/SparseLU \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_gemm_kernel.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Structs.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_SupernodalMatrix.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLUImpl.h \
+  /usr/include/eigen3/Eigen/src/SparseCore/SparseColEtree.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Memory.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_heap_relax_snode.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_relax_snode.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_pivotL.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_panel_dfs.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_kernel_bmod.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_panel_bmod.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_column_dfs.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_column_bmod.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_copy_to_ucol.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_pruneL.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Utils.h \
+  /usr/include/eigen3/Eigen/src/SparseLU/SparseLU.h \
+  /usr/include/eigen3/Eigen/SparseQR \
+  /usr/include/eigen3/Eigen/src/SparseQR/SparseQR.h \
+  /usr/include/eigen3/Eigen/IterativeLinearSolvers \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/SolveWithGuess.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IterativeSolverBase.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/BasicPreconditioners.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/ConjugateGradient.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/LeastSquareConjugateGradient.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/BiCGSTAB.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h \
+  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h
 
 
 /usr/include/c++/9/bits/deque.tcc:
@@ -2211,10 +2368,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/boost/system/system_error.hpp:
 
-/usr/include/c++/9/bits/list.tcc:
-
-/usr/include/c++/9/bits/stl_list.h:
-
 /usr/include/c++/9/bits/parse_numbers.h:
 
 /usr/include/c++/9/ratio:
@@ -2223,17 +2376,11 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/mutex:
 
-/usr/include/c++/9/map:
-
 /usr/include/boost/filesystem/convenience.hpp:
 
 /usr/include/boost/system/detail/std_interoperability.hpp:
 
 /usr/include/boost/cerrno.hpp:
-
-/usr/include/c++/9/bits/stl_multimap.h:
-
-/usr/include/boost/system/detail/config.hpp:
 
 /usr/include/boost/type_traits/remove_extent.hpp:
 
@@ -2246,8 +2393,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/filesystem/config.hpp:
 
 /usr/include/boost/type_traits/add_cv.hpp:
-
-/usr/include/boost/iostreams/device/array.hpp:
 
 /usr/include/boost/iostreams/detail/adapter/mode_adapter.hpp:
 
@@ -2311,8 +2456,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/boost/range/rbegin.hpp:
 
-/usr/include/boost/iterator/distance.hpp:
-
 /usr/include/boost/range/distance.hpp:
 
 /usr/include/boost/core/noncopyable.hpp:
@@ -2324,8 +2467,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/preprocessor/logical/not.hpp:
 
 /usr/include/boost/preprocessor/comparison/less_equal.hpp:
-
-/usr/include/boost/preprocessor/seq/transform.hpp:
 
 /usr/include/boost/preprocessor/seq/fold_left.hpp:
 
@@ -2369,13 +2510,9 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/boost/range/has_range_iterator.hpp:
 
-/usr/include/boost/range/difference_type.hpp:
-
 /usr/include/boost/range/detail/sfinae.hpp:
 
 /usr/include/boost/range/detail/implementation_help.hpp:
-
-/usr/include/boost/range/end.hpp:
 
 /usr/include/boost/range/detail/msvc_has_iterator_workaround.hpp:
 
@@ -2397,15 +2534,11 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/boost/mpl/has_xxx.hpp:
 
-/usr/include/boost/mpl/aux_/has_apply.hpp:
-
 /usr/include/boost/mpl/apply_wrap.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/apply_fwd.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessor/default_params.hpp:
-
-/usr/include/boost/type_traits/is_enum.hpp:
 
 /usr/include/boost/type_traits/is_member_pointer.hpp:
 
@@ -2477,8 +2610,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/boost/preprocessor/iteration/detail/local.hpp:
 
-/usr/include/boost/utility/detail/result_of_iterate.hpp:
-
 /usr/include/boost/range/const_iterator.hpp:
 
 /usr/include/boost/preprocessor/slot/detail/shared.hpp:
@@ -2494,8 +2625,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/system/detail/system_category_posix.hpp:
 
 /usr/include/boost/type_traits/is_rvalue_reference.hpp:
-
-/usr/include/boost/type_traits/is_lvalue_reference.hpp:
 
 /usr/include/boost/type_traits/is_reference.hpp:
 
@@ -2531,8 +2660,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/boost/core/demangle.hpp:
 
-/usr/include/boost/core/typeinfo.hpp:
-
 /usr/include/boost/iostreams/detail/streambuf/direct_streambuf.hpp:
 
 /usr/include/boost/iostreams/stream_buffer.hpp:
@@ -2542,10 +2669,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/mpl/aux_/template_arity.hpp:
 
 /usr/include/boost/mpl/identity.hpp:
-
-/usr/include/boost/detail/select_type.hpp:
-
-/usr/include/boost/mpl/aux_/lambda_support.hpp:
 
 /usr/include/boost/mpl/and.hpp:
 
@@ -2615,15 +2738,7 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/boost/mpl/lambda_fwd.hpp:
 
-/usr/include/c++/9/bits/erase_if.h:
-
-/usr/include/boost/mpl/aux_/na_spec.hpp:
-
 /usr/include/boost/mpl/aux_/config/msvc.hpp:
-
-/usr/include/c++/9/bits/stl_map.h:
-
-/usr/include/boost/mpl/aux_/config/integral.hpp:
 
 /usr/include/boost/mpl/aux_/static_cast.hpp:
 
@@ -2695,15 +2810,139 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/boost/preprocessor/punctuation/comma.hpp:
 
-/usr/include/eigen3/Eigen/src/Core/arch/CUDA/PacketMathHalf.h:
+/usr/include/boost/preprocessor/facilities/empty.hpp:
 
-/usr/include/eigen3/Eigen/src/Core/products/TriangularSolverMatrix.h:
+/usr/include/boost/preprocessor/logical/bool.hpp:
+
+/usr/include/boost/preprocessor/control/iif.hpp:
+
+/usr/include/boost/iostreams/detail/config/limits.hpp:
+
+/usr/include/boost/iostreams/detail/forward.hpp:
+
+/usr/include/boost/preprocessor/inc.hpp:
+
+/usr/include/boost/iostreams/detail/config/gcc.hpp:
+
+/usr/include/boost/type_traits/is_complete.hpp:
+
+/usr/include/boost/preprocessor/detail/auto_rec.hpp:
+
+/usr/include/boost/iostreams/detail/char_traits.hpp:
+
+/usr/include/boost/iostreams/constants.hpp:
+
+/usr/include/boost/range/functions.hpp:
+
+/usr/include/boost/range/iterator_range.hpp:
+
+/usr/include/boost/iostreams/stream.hpp:
+
+/usr/include/boost/config/abi_suffix.hpp:
+
+/usr/include/boost/type_traits/is_class.hpp:
+
+/usr/include/boost/config/abi_prefix.hpp:
+
+/usr/include/boost/preprocessor/repetition/enum_trailing_params.hpp:
+
+/usr/include/boost/smart_ptr/detail/operator_bool.hpp:
+
+/usr/include/boost/predef/platform/windows_store.h:
+
+/usr/include/boost/predef/platform/windows_uwp.h:
+
+/usr/include/boost/predef/version_number.h:
+
+/usr/include/boost/predef/detail/test.h:
+
+/usr/include/boost/smart_ptr/detail/yield_k.hpp:
+
+/usr/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp:
+
+/usr/include/boost/iostreams/detail/is_iterator_range.hpp:
+
+/usr/include/boost/preprocessor/tuple/detail/is_single_return.hpp:
+
+/usr/include/boost/smart_ptr/detail/spinlock.hpp:
+
+/usr/include/boost/smart_ptr/detail/sp_nullptr_t.hpp:
+
+/usr/include/boost/smart_ptr/detail/sp_disable_deprecated.hpp:
+
+/usr/include/boost/io/detail/quoted_manip.hpp:
+
+/usr/include/boost/type_traits/detail/bool_trait_undef.hpp:
+
+/usr/include/boost/core/addressof.hpp:
+
+/usr/include/boost/smart_ptr/detail/sp_counted_impl.hpp:
+
+/usr/include/boost/smart_ptr/detail/sp_counted_base_std_atomic.hpp:
+
+/usr/include/boost/smart_ptr/detail/sp_counted_base.hpp:
+
+/usr/include/boost/smart_ptr/bad_weak_ptr.hpp:
+
+/usr/include/boost/smart_ptr/detail/shared_count.hpp:
+
+/usr/include/boost/core/checked_delete.hpp:
+
+/usr/include/boost/iostreams/detail/is_dereferenceable.hpp:
+
+/usr/include/boost/checked_delete.hpp:
+
+/usr/include/c++/9/backward/auto_ptr.h:
+
+/usr/include/c++/9/bits/atomic_lockfree_defines.h:
+
+/usr/include/boost/iterator/reverse_iterator.hpp:
+
+/usr/include/c++/9/bits/shared_ptr_atomic.h:
+
+/usr/include/boost/type_traits/detail/is_member_function_pointer_cxx_11.hpp:
+
+/usr/include/c++/9/bits/shared_ptr.h:
+
+/usr/include/c++/9/ext/concurrence.h:
+
+/usr/include/boost/config/no_tr1/memory.hpp:
+
+/usr/include/boost/smart_ptr/shared_ptr.hpp:
+
+/usr/include/boost/shared_ptr.hpp:
+
+/usr/include/boost/iostreams/detail/config/enable_warnings.hpp:
+
+/usr/include/boost/iostreams/detail/config/codecvt.hpp:
+
+/usr/include/boost/integer_traits.hpp:
+
+/usr/include/boost/iostreams/positioning.hpp:
+
+/usr/include/boost/mpl/aux_/config/lambda.hpp:
+
+/usr/include/boost/type_traits/is_same.hpp:
+
+/usr/include/boost/type.hpp:
+
+/usr/include/boost/static_assert.hpp:
+
+/usr/include/boost/iostreams/detail/path.hpp:
+
+/usr/include/boost/preprocessor/control/if.hpp:
+
+/usr/include/eigen3/Eigen/src/Core/arch/CUDA/TypeCasting.h:
+
+/usr/include/eigen3/Eigen/src/Core/arch/CUDA/PacketMathHalf.h:
 
 /usr/include/eigen3/Eigen/src/Core/arch/CUDA/Half.h:
 
 /usr/include/boost/preprocessor/iteration/detail/bounds/lower1.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/GenericPacketMath.h:
+
+/usr/include/eigen3/Eigen/Sparse:
 
 /usr/include/c++/9/bits/stl_uninitialized.h:
 
@@ -2712,6 +2951,12 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/mpl/placeholders.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/util/Meta.h:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/apply.hpp:
+
+/usr/include/c++/9/bits/shared_ptr_base.h:
+
+/usr/include/c++/9/bits/stl_algo.h:
 
 /usr/include/c++/9/bits/uniform_int_dist.h:
 
@@ -2727,9 +2972,13 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/bits/alloc_traits.h:
 
+/usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IterativeSolverBase.h:
+
 /usr/include/c++/9/bits/algorithmfwd.h:
 
 /usr/include/eigen3/Eigen/src/Core/MatrixBase.h:
+
+/usr/include/c++/9/bits/list.tcc:
 
 /usr/include/boost/type_traits/alignment_of.hpp:
 
@@ -2740,12 +2989,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/mpl/bind.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/Inverse.h:
-
-/usr/include/boost/type_traits/is_pod.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/uio_lim.h:
-
-/usr/include/boost/iostreams/detail/forward.hpp:
 
 /usr/include/eigen3/Eigen/src/Householder/HouseholderSequence.h:
 
@@ -2761,19 +3004,11 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/Core/CoreEvaluators.h:
 
-/usr/include/boost/preprocessor/repetition/enum_trailing_params.hpp:
-
-/usr/include/boost/smart_ptr/detail/operator_bool.hpp:
-
 /usr/include/boost/core/scoped_enum.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
 /usr/include/c++/9/functional:
-
-/usr/include/boost/iterator/detail/config_undef.hpp:
-
-/usr/include/c++/9/bits/invoke.h:
 
 /usr/include/boost/iostreams/detail/config/unreachable_return.hpp:
 
@@ -2787,7 +3022,11 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/bits/stl_relops.h:
 
+/usr/include/eigen3/Eigen/src/IterativeLinearSolvers/ConjugateGradient.h:
+
 /usr/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseSelfAdjointView.h:
 
 /usr/include/eigen3/Eigen/src/Core/NumTraits.h:
 
@@ -2798,6 +3037,10 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/mpl/if.hpp:
 
 /usr/include/c++/9/clocale:
+
+/usr/include/c++/9/bits/stl_raw_storage_iter.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/emmintrin.h:
 
 /usr/include/eigen3/Eigen/src/Core/arch/SSE/TypeCasting.h:
 
@@ -2821,7 +3064,13 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/streambuf:
 
-/usr/include/boost/static_assert.hpp:
+/usr/include/boost/iostreams/detail/config/disable_warnings.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/include/boost/smart_ptr/detail/sp_noexcept.hpp:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/error_constants.h:
 
 /usr/include/c++/9/system_error:
 
@@ -2836,6 +3085,12 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/core/use_default.hpp:
 
 /usr/include/boost/config.hpp:
+
+/usr/include/boost/iostreams/imbue.hpp:
+
+/usr/include/boost/smart_ptr/detail/sp_typeinfo_.hpp:
+
+/usr/include/c++/9/bits/locale_classes.tcc:
 
 /usr/include/boost/iostreams/detail/call_traits.hpp:
 
@@ -2853,13 +3108,9 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
-/usr/include/c++/9/bits/uses_allocator.h:
-
 /usr/include/wctype.h:
 
 /usr/include/sched.h:
-
-/usr/include/boost/config/no_tr1/memory.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
@@ -2877,6 +3128,10 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/stdio2.h:
 
+/usr/include/boost/range/difference_type.hpp:
+
+/usr/include/eigen3/Eigen/src/Core/util/NonMPL2.h:
+
 /usr/include/string.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdio.h:
@@ -2891,19 +3146,11 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/Core/CommaInitializer.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/9/include/emmintrin.h:
-
-/usr/include/c++/9/bits/stl_raw_storage_iter.h:
-
 /usr/include/c++/9/bits/streambuf.tcc:
 
 /usr/include/boost/iostreams/detail/streambuf/linked_streambuf.hpp:
 
 /usr/include/c++/9/backward/binders.h:
-
-/usr/include/boost/type_traits/detail/is_member_function_pointer_cxx_11.hpp:
-
-/usr/include/c++/9/bits/shared_ptr.h:
 
 /usr/include/c++/9/tuple:
 
@@ -2925,10 +3172,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/QR/CompleteOrthogonalDecomposition.h:
 
-/usr/include/x86_64-linux-gnu/bits/sched.h:
-
-/usr/include/boost/iostreams/detail/config/disable_warnings.hpp:
-
 /usr/include/boost/mpl/aux_/adl_barrier.hpp:
 
 /usr/include/c++/9/ext/new_allocator.h:
@@ -2944,10 +3187,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/c++/9/bits/locale_classes.h:
 
 /usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
-
-/usr/include/boost/type_traits/is_class.hpp:
-
-/usr/include/boost/config/abi_prefix.hpp:
 
 /usr/include/boost/detail/bitmask.hpp:
 
@@ -2997,17 +3236,21 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/Geometry:
 
-/usr/include/boost/smart_ptr/shared_ptr.hpp:
-
 /usr/include/boost/type_traits/has_plus.hpp:
 
 /usr/include/eigen3/Eigen/src/misc/Image.h:
 
-/usr/include/x86_64-linux-gnu/c++/9/bits/gthr-default.h:
+/usr/include/boost/concept/detail/backward_compatibility.hpp:
+
+/usr/include/boost/smart_ptr/detail/spinlock_pool.hpp:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparsePermutation.h:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
 /usr/include/eigen3/Eigen/src/Core/SolveTriangular.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseTranspose.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
@@ -3051,11 +3294,21 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/wchar2.h:
 
+/usr/include/boost/iostreams/device/array.hpp:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_gemm_kernel.h:
+
 /usr/include/c++/9/exception:
+
+/usr/include/boost/iterator/distance.hpp:
+
+/usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h:
 
 /usr/include/c++/9/bits/std_mutex.h:
 
 /usr/include/c++/9/bits/stl_construct.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseRef.h:
 
 /usr/include/boost/config/user.hpp:
 
@@ -3077,11 +3330,11 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/Core/Solve.h:
 
-/usr/include/c++/9/bits/atomic_lockfree_defines.h:
-
 /usr/include/boost/mpl/next.hpp:
 
 /usr/include/boost/preprocessor/stringize.hpp:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_heap_relax_snode.h:
 
 /usr/include/c++/9/bits/functional_hash.h:
 
@@ -3094,10 +3347,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/type_traits/has_minus.hpp:
 
 /usr/include/c++/9/iomanip:
-
-/usr/include/boost/shared_ptr.hpp:
-
-/usr/include/boost/predef/detail/test.h:
 
 /usr/include/boost/mpl/aux_/yes_no.hpp:
 
@@ -3133,8 +3382,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/9/bits/gthr.h:
 
-/usr/include/x86_64-linux-gnu/asm/errno.h:
-
 /usr/include/boost/iostreams/detail/streambuf/indirect_streambuf.hpp:
 
 /usr/include/boost/type_traits/add_volatile.hpp:
@@ -3148,6 +3395,10 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseSparseProductWithPruning.h:
+
+/usr/include/eigen3/Eigen/src/OrderingMethods/Eigen_Colamd.h:
 
 /usr/include/boost/filesystem/operations.hpp:
 
@@ -3181,8 +3432,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
-/usr/include/eigen3/Eigen/src/Core/Product.h:
-
 /usr/include/boost/range/size_type.hpp:
 
 ../src/defs.h:
@@ -3193,17 +3442,21 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
 
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_panel_bmod.h:
+
 /usr/include/boost/mpl/aux_/msvc_never_true.hpp:
 
 /usr/include/boost/iostreams/detail/file_handle.hpp:
 
 /usr/include/c++/9/cmath:
 
+/usr/include/boost/predef/make.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseMap.h:
+
 /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h:
 
 /usr/include/c++/9/bits/codecvt.h:
-
-/usr/include/boost/config/abi_suffix.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/util/Constants.h:
 
@@ -3251,11 +3504,23 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/Core/util/BlasUtil.h:
 
+/usr/include/boost/preprocessor/config/config.hpp:
+
+/usr/include/c++/9/initializer_list:
+
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
 /usr/include/eigen3/Eigen/src/plugins/CommonCwiseBinaryOps.h:
 
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/eigen3/Eigen/IterativeLinearSolvers:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Memory.h:
+
 /usr/include/eigen3/Eigen/src/Core/products/SelfadjointRank2Update.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/ConservativeSparseSparseProduct.h:
 
 /usr/include/boost/preprocessor/logical/compl.hpp:
 
@@ -3263,7 +3528,13 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/Core/util/Macros.h:
 
+/usr/include/boost/smart_ptr/detail/sp_has_sync.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
 ../src/camera.cpp:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseView.h:
 
 /usr/include/boost/mpl/aux_/lambda_arity_param.hpp:
 
@@ -3277,19 +3548,13 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
-/usr/include/c++/9/backward/auto_ptr.h:
-
-/usr/include/c++/9/bits/stl_tree.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
-
 /usr/include/x86_64-linux-gnu/c++/9/bits/cpu_defines.h:
 
-/usr/include/eigen3/Eigen/src/Core/Diagonal.h:
+/usr/include/c++/9/atomic:
 
-/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
-/usr/include/c++/9/bits/ostream.tcc:
+/usr/include/wchar.h:
 
 /usr/include/eigen3/Eigen/src/misc/Kernel.h:
 
@@ -3323,10 +3588,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/bits/std_abs.h:
 
-/usr/include/x86_64-linux-gnu/bits/typesizes.h:
-
-/usr/include/boost/smart_ptr/detail/sp_has_sync.hpp:
-
 /usr/include/c++/9/ext/type_traits.h:
 
 /usr/include/eigen3/Eigen/src/Core/CwiseUnaryOp.h:
@@ -3337,17 +3598,19 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/bits/nested_exception.h:
 
-/usr/include/boost/iostreams/detail/is_dereferenceable.hpp:
-
-/usr/include/boost/checked_delete.hpp:
-
 /usr/include/c++/9/bits/concept_check.h:
 
 /usr/include/c++/9/bits/stl_iterator_base_funcs.h:
 
-/usr/include/boost/iterator/reverse_iterator.hpp:
+/usr/include/boost/range/detail/common.hpp:
 
-/usr/include/c++/9/bits/shared_ptr_atomic.h:
+/usr/include/boost/iostreams/traits_fwd.hpp:
+
+/usr/include/boost/limits.hpp:
+
+/usr/include/c++/9/cstdlib:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseCwiseUnaryOp.h:
 
 /usr/include/c++/9/bits/hash_bytes.h:
 
@@ -3361,6 +3624,8 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
+/usr/include/eigen3/Eigen/src/SparseCore/MappedSparseMatrix.h:
+
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/boost/preprocessor/array/size.hpp:
@@ -3370,8 +3635,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/system/error_code.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/VectorBlock.h:
-
-/usr/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
@@ -3393,11 +3656,13 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
+/usr/include/boost/preprocessor/seq/transform.hpp:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseMatrix.h:
+
 /usr/include/c++/9/complex:
 
 /usr/include/eigen3/Eigen/src/Core/Transpose.h:
-
-/usr/include/boost/smart_ptr/detail/sp_counted_impl.hpp:
 
 /usr/include/x86_64-linux-gnu/c++/9/bits/cxxabi_tweaks.h:
 
@@ -3429,10 +3694,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/limits.h:
 
-/usr/include/eigen3/Eigen/src/plugins/BlockMethods.h:
-
-/usr/include/eigen3/Eigen/src/Core/AssignEvaluator.h:
-
 /usr/include/c++/9/bits/locale_facets.tcc:
 
 /usr/include/strings.h:
@@ -3445,8 +3706,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
-/usr/include/boost/predef/make.h:
-
 /usr/include/boost/mpl/or.hpp:
 
 /usr/include/c++/9/bits/stl_algobase.h:
@@ -3455,15 +3714,19 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
+/usr/include/eigen3/Eigen/src/SparseCore/SparseFuzzy.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /usr/include/c++/9/iosfwd:
 
-/usr/include/boost/filesystem/string_file.hpp:
+/usr/include/c++/9/bits/uses_allocator.h:
 
-/usr/include/c++/9/list:
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU.h:
 
-/usr/include/c++/9/istream:
+/usr/include/boost/core/typeinfo.hpp:
+
+/usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h:
 
 /usr/include/boost/range/size.hpp:
 
@@ -3480,12 +3743,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/preprocessor/tuple/elem.hpp:
 
 /usr/include/c++/9/bits/postypes.h:
-
-/usr/include/boost/iostreams/imbue.hpp:
-
-/usr/include/c++/9/bits/locale_classes.tcc:
-
-/usr/include/boost/smart_ptr/detail/sp_typeinfo_.hpp:
 
 /usr/include/c++/9/bits/range_access.h:
 
@@ -3507,6 +3764,12 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/bits/locale_facets_nonio.h:
 
+/usr/include/boost/iterator/detail/config_undef.hpp:
+
+/usr/include/c++/9/bits/invoke.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseVector.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/9/include/stdarg.h:
 
 /usr/include/c++/9/cxxabi.h:
@@ -3525,8 +3788,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
-/usr/include/boost/smart_ptr/detail/yield_k.hpp:
-
 /usr/include/math.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
@@ -3539,15 +3800,13 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/boost/iostreams/detail/config/auto_link.hpp:
 
-/usr/include/boost/iostreams/detail/is_iterator_range.hpp:
-
-/usr/include/boost/preprocessor/tuple/detail/is_single_return.hpp:
-
-/usr/include/boost/smart_ptr/detail/spinlock.hpp:
-
 /usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/include/boost/iostreams/detail/config/wide_streams.hpp:
+
+/usr/include/c++/9/debug/assertions.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
 
@@ -3563,7 +3822,15 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/bits/stl_vector.h:
 
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/c++/9/bits/stl_tree.h:
+
 /usr/include/c++/9/bits/functexcept.h:
+
+/usr/include/boost/mpl/aux_/config/integral.hpp:
+
+/usr/include/c++/9/bits/stl_map.h:
 
 /usr/include/c++/9/bits/stl_iterator.h:
 
@@ -3573,9 +3840,15 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/cctype:
 
+/usr/include/eigen3/Eigen/src/OrderingMethods/Ordering.h:
+
 /usr/include/boost/type_traits/detail/is_function_cxx_11.hpp:
 
 /usr/include/c++/9/cwctype:
+
+/usr/include/boost/preprocessor/punctuation/comma_if.hpp:
+
+/usr/include/eigen3/Eigen/src/Core/functors/UnaryFunctors.h:
 
 /usr/include/boost/iostreams/operations_fwd.hpp:
 
@@ -3599,23 +3872,23 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/Core/functors/BinaryFunctors.h:
 
+/usr/include/eigen3/Eigen/src/IterativeLinearSolvers/SolveWithGuess.h:
+
 /usr/include/eigen3/Eigen/src/plugins/CommonCwiseUnaryOps.h:
 
 /usr/include/boost/mpl/aux_/full_lambda.hpp:
 
 /usr/include/boost/iostreams/detail/config/dyn_link.hpp:
 
-/usr/include/boost/smart_ptr/detail/sp_counted_base_std_atomic.hpp:
-
 /usr/include/eigen3/Eigen/src/Core/EigenBase.h:
+
+/usr/include/boost/type_traits/is_enum.hpp:
+
+/usr/include/eigen3/Eigen/SparseQR:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
 /usr/include/eigen3/Eigen/src/Core/Assign.h:
-
-/usr/include/x86_64-linux-gnu/c++/9/bits/error_constants.h:
-
-/usr/include/boost/smart_ptr/detail/sp_noexcept.hpp:
 
 /usr/include/x86_64-linux-gnu/c++/9/bits/c++locale.h:
 
@@ -3629,11 +3902,23 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/Core/BooleanRedux.h:
 
+/usr/include/boost/functional/hash_fwd.hpp:
+
+/usr/include/boost/predef/os/windows.h:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:
+
+/usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h:
+
 /usr/include/boost/iostreams/detail/resolve.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/apply_wrap.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/Matrix.h:
+
+/usr/include/boost/smart_ptr/detail/sp_convertible.hpp:
+
+/usr/include/boost/config/platform/linux.hpp:
 
 /usr/include/boost/iostreams/detail/adapter/range_adapter.hpp:
 
@@ -3649,13 +3934,23 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/Core/CwiseNullaryOp.h:
 
+/usr/include/boost/detail/select_type.hpp:
+
+/usr/include/boost/mpl/aux_/lambda_support.hpp:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Utils.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h:
 
 /usr/include/eigen3/Eigen/src/Core/CwiseUnaryView.h:
 
-/usr/include/eigen3/Eigen/src/Core/SelfCwiseBinaryOp.h:
+/usr/include/boost/filesystem/string_file.hpp:
 
-/usr/include/boost/iostreams/detail/config/codecvt.hpp:
+/usr/include/c++/9/istream:
+
+/usr/include/c++/9/list:
+
+/usr/include/eigen3/Eigen/src/Core/SelfCwiseBinaryOp.h:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
@@ -3695,8 +3990,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/Core/Fuzzy.h:
 
-/usr/include/boost/preprocessor/control/iif.hpp:
-
 /usr/include/eigen3/Eigen/src/Core/SolverBase.h:
 
 /usr/include/eigen3/Eigen/src/Core/PermutationMatrix.h:
@@ -3713,8 +4006,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/bits/allocated_ptr.h:
 
-/usr/include/boost/smart_ptr/detail/sp_nullptr_t.hpp:
-
 /usr/include/eigen3/Eigen/src/Core/ProductEvaluators.h:
 
 /usr/include/eigen3/Eigen/src/SVD/UpperBidiagonalization.h:
@@ -3728,6 +4019,8 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/range/range_fwd.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrix.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseTriangularView.h:
 
 /usr/include/boost/mpl/aux_/config/workaround.hpp:
 
@@ -3743,19 +4036,29 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/Core/products/TriangularMatrixMatrix.h:
 
+/usr/include/eigen3/Eigen/src/plugins/BlockMethods.h:
+
+/usr/include/eigen3/Eigen/src/Core/AssignEvaluator.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseCompressedBase.h:
+
 /usr/include/stdc-predef.h:
 
 /usr/include/eigen3/Eigen/src/Core/products/TriangularSolverVector.h:
 
 /usr/include/boost/utility/base_from_member.hpp:
 
+/usr/include/eigen3/Eigen/src/SparseCore/SparseRedux.h:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_column_bmod.h:
+
 /usr/include/eigen3/Eigen/src/Geometry/Rotation2D.h:
 
-/usr/include/boost/tuple/detail/tuple_basic.hpp:
+/usr/include/boost/preprocessor/repetition/enum_params.hpp:
 
-/usr/include/c++/9/bits/cxxabi_init_exception.h:
+/usr/include/boost/predef/platform/windows_runtime.h:
 
-/usr/include/eigen3/Eigen/src/Core/Select.h:
+/usr/include/eigen3/Eigen/src/Core/VectorwiseOp.h:
 
 /usr/include/boost/type_traits/remove_volatile.hpp:
 
@@ -3791,7 +4094,7 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/QR/HouseholderQR.h:
 
-/usr/include/boost/type.hpp:
+/usr/include/eigen3/Eigen/src/SparseCore/SparseUtil.h:
 
 /usr/include/boost/type_traits/remove_cv.hpp:
 
@@ -3811,6 +4114,8 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/eigen3/Eigen/src/Geometry/OrthoMethods.h:
 
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLUImpl.h:
+
 /usr/include/eigen3/Eigen/src/Geometry/Homogeneous.h:
 
 /usr/include/c++/9/bits/stl_pair.h:
@@ -3827,13 +4132,17 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/boost/iostreams/detail/config/windows_posix.hpp:
 
-/usr/include/boost/smart_ptr/detail/local_sp_deleter.hpp:
-
 /usr/include/boost/preprocessor/detail/check.hpp:
 
 /usr/include/c++/9/bits/std_function.h:
 
 /usr/include/eigen3/Eigen/src/Geometry/Scaling.h:
+
+/usr/include/boost/preprocessor/repetition/repeat.hpp:
+
+/usr/include/boost/iostreams/detail/config/fpos.hpp:
+
+../executables/main.cpp:
 
 /usr/include/boost/preprocessor/iteration/detail/bounds/upper1.hpp:
 
@@ -3846,18 +4155,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/boost/iostreams/device/file_descriptor.hpp:
 
 /usr/include/eigen3/Eigen/src/Geometry/Umeyama.h:
-
-/usr/include/boost/io/detail/quoted_manip.hpp:
-
-/usr/include/boost/type_traits/detail/bool_trait_undef.hpp:
-
-/usr/include/boost/core/addressof.hpp:
-
-/usr/include/boost/range/functions.hpp:
-
-/usr/include/boost/range/iterator_range.hpp:
-
-/usr/include/boost/iostreams/stream.hpp:
 
 /usr/include/eigen3/Eigen/src/Geometry/arch/Geometry_SSE.h:
 
@@ -3899,11 +4196,15 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/bits/locale_conv.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/boost/preprocessor/arithmetic/inc.hpp:
-
 /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h:
+
+/usr/include/boost/assert.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_copy_to_ucol.h:
 
 /usr/include/c++/9/bits/fstream.tcc:
 
@@ -3923,29 +4224,131 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/c++/9/bits/unique_ptr.h:
 
+/usr/include/c++/9/bits/stl_list.h:
+
+/usr/include/eigen3/Eigen/SparseCore:
+
+/usr/include/c++/9/map:
+
+/usr/include/c++/9/ext/aligned_buffer.h:
+
+/usr/include/boost/system/detail/config.hpp:
+
+/usr/include/c++/9/bits/stl_multimap.h:
+
+/usr/include/boost/mpl/aux_/na_spec.hpp:
+
+/usr/include/c++/9/bits/erase_if.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseMatrixBase.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseAssign.h:
+
+/usr/include/boost/smart_ptr/detail/local_sp_deleter.hpp:
+
+/usr/include/eigen3/Eigen/src/SparseCore/CompressedStorage.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/AmbiVector.h:
+
 /usr/include/eigen3/Eigen/Dense:
 
-/usr/include/boost/preprocessor/repetition/repeat.hpp:
+/usr/include/eigen3/Eigen/src/Core/products/TriangularSolverMatrix.h:
 
-../executables/main.cpp:
+/usr/include/eigen3/Eigen/src/SparseCore/SparseCwiseBinaryOp.h:
 
-/usr/include/boost/iostreams/detail/config/fpos.hpp:
+/usr/include/eigen3/Eigen/src/SparseCore/SparseDot.h:
 
-/usr/include/eigen3/Eigen/src/plugins/ArrayCwiseUnaryOps.h:
+/usr/include/eigen3/Eigen/src/Core/Diagonal.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseDiagonalProduct.h:
+
+/usr/include/boost/preprocessor/arithmetic/inc.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/TriangularSolver.h:
+
+/usr/include/boost/type_traits/is_lvalue_reference.hpp:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseProduct.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseDenseProduct.h:
+
+/usr/include/boost/mpl/aux_/has_apply.hpp:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseSolverBase.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/gnuplot-iostream.h:
+
+/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:
+
+/usr/include/c++/9/bits/ostream.tcc:
+
+/usr/include/eigen3/Eigen/OrderingMethods:
+
+/usr/include/boost/utility/detail/result_of_iterate.hpp:
+
+/usr/include/eigen3/Eigen/SparseCholesky:
+
+/usr/include/boost/tuple/detail/tuple_basic.hpp:
+
+/usr/include/c++/9/bits/cxxabi_init_exception.h:
+
+/usr/include/eigen3/Eigen/src/Core/Select.h:
+
+/usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky.h:
+
+/usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky_impl.h:
+
+/usr/include/eigen3/Eigen/SparseLU:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Structs.h:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_SupernodalMatrix.h:
+
+/usr/include/boost/type_traits/is_pod.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/uio_lim.h:
+
+/usr/include/eigen3/Eigen/src/SparseCore/SparseColEtree.h:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_relax_snode.h:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_pivotL.h:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_panel_dfs.h:
+
+/usr/include/boost/range/end.hpp:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_column_dfs.h:
+
+/usr/include/eigen3/Eigen/src/Core/Product.h:
+
+/usr/include/eigen3/Eigen/src/SparseLU/SparseLU_pruneL.h:
+
+/usr/include/eigen3/Eigen/src/SparseQR/SparseQR.h:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/gthr-default.h:
+
+/usr/include/eigen3/Eigen/src/OrderingMethods/Amd.h:
+
+/usr/include/eigen3/Eigen/src/IterativeLinearSolvers/BasicPreconditioners.h:
+
+/usr/include/eigen3/Eigen/src/IterativeLinearSolvers/LeastSquareConjugateGradient.h:
+
+/usr/include/eigen3/Eigen/src/IterativeLinearSolvers/BiCGSTAB.h:
 
 /usr/include/boost/iostreams/detail/push_params.hpp:
+
+/usr/include/eigen3/Eigen/src/plugins/ArrayCwiseUnaryOps.h:
 
 /usr/include/eigen3/Eigen/src/Eigenvalues/RealSchur.h:
 
 /usr/include/boost/mpl/aux_/config/preprocessor.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/apply.hpp:
-
-/usr/include/c++/9/bits/stl_algo.h:
-
-/usr/include/c++/9/bits/shared_ptr_base.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
@@ -3958,10 +4361,6 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h:
 
 /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h:
-
-/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
-
-/usr/include/gnuplot-iostream.h:
 
 /usr/include/boost/mpl/apply.hpp:
 
@@ -3991,114 +4390,10 @@ executables/CMakeFiles/main.dir/main.cpp.o: ../executables/main.cpp \
 
 /usr/include/boost/config/detail/select_platform_config.hpp:
 
+/usr/include/eigen3/Eigen/src/SparseCore/SparseBlock.h:
+
 /usr/include/boost/config/detail/suffix.hpp:
 
 /usr/include/boost/config/helper_macros.hpp:
 
 /usr/include/boost/detail/workaround.hpp:
-
-/usr/include/c++/9/debug/assertions.h:
-
-/usr/include/boost/iostreams/detail/config/wide_streams.hpp:
-
-/usr/include/boost/core/checked_delete.hpp:
-
-/usr/include/eigen3/Eigen/src/Core/functors/UnaryFunctors.h:
-
-/usr/include/boost/preprocessor/punctuation/comma_if.hpp:
-
-/usr/include/boost/iostreams/detail/path.hpp:
-
-/usr/include/boost/mpl/aux_/config/lambda.hpp:
-
-/usr/include/boost/type_traits/is_same.hpp:
-
-/usr/include/boost/iostreams/positioning.hpp:
-
-/usr/include/boost/integer_traits.hpp:
-
-/usr/include/boost/range/detail/common.hpp:
-
-/usr/include/boost/iostreams/traits_fwd.hpp:
-
-/usr/include/c++/9/cstdlib:
-
-/usr/include/boost/limits.hpp:
-
-/usr/include/boost/iostreams/detail/config/enable_warnings.hpp:
-
-/usr/include/c++/9/ext/concurrence.h:
-
-/usr/include/c++/9/ext/aligned_buffer.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
-
-/usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h:
-
-/usr/include/boost/assert.hpp:
-
-/usr/include/boost/smart_ptr/detail/shared_count.hpp:
-
-/usr/include/boost/smart_ptr/bad_weak_ptr.hpp:
-
-/usr/include/boost/smart_ptr/detail/sp_counted_base.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
-
-/usr/include/wchar.h:
-
-/usr/include/c++/9/atomic:
-
-/usr/include/boost/smart_ptr/detail/sp_disable_deprecated.hpp:
-
-/usr/include/boost/config/platform/linux.hpp:
-
-/usr/include/boost/smart_ptr/detail/sp_convertible.hpp:
-
-/usr/include/boost/concept/detail/backward_compatibility.hpp:
-
-/usr/include/boost/smart_ptr/detail/spinlock_pool.hpp:
-
-/usr/include/boost/preprocessor/repetition/enum_params.hpp:
-
-/usr/include/eigen3/Eigen/src/Core/VectorwiseOp.h:
-
-/usr/include/boost/predef/platform/windows_runtime.h:
-
-/usr/include/boost/functional/hash_fwd.hpp:
-
-/usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h:
-
-/usr/include/boost/predef/os/windows.h:
-
-/usr/include/boost/predef/version_number.h:
-
-/usr/include/boost/predef/platform/windows_uwp.h:
-
-/usr/include/boost/predef/platform/windows_store.h:
-
-/usr/include/boost/iostreams/constants.hpp:
-
-/usr/include/boost/type_traits/is_complete.hpp:
-
-/usr/include/boost/preprocessor/detail/auto_rec.hpp:
-
-/usr/include/boost/iostreams/detail/char_traits.hpp:
-
-/usr/include/boost/preprocessor/inc.hpp:
-
-/usr/include/boost/iostreams/detail/config/gcc.hpp:
-
-/usr/include/boost/iostreams/detail/config/limits.hpp:
-
-/usr/include/c++/9/initializer_list:
-
-/usr/include/boost/preprocessor/config/config.hpp:
-
-/usr/include/eigen3/Eigen/src/Core/arch/CUDA/TypeCasting.h:
-
-/usr/include/boost/preprocessor/control/if.hpp:
-
-/usr/include/boost/preprocessor/logical/bool.hpp:
-
-/usr/include/boost/preprocessor/facilities/empty.hpp:

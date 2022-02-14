@@ -1,4 +1,4 @@
-# Install script for directory: /home/paolo/Documents/09-PlanarMonocularSlam_one_person
+# Install script for directory: /home/paolo/Documents/PlanarMonocularSlam
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/executables/cmake_install.cmake")
+  include("/home/paolo/Documents/PlanarMonocularSlam/build/executables/cmake_install.cmake")
 
 endif()
 
@@ -56,5 +56,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/paolo/Documents/09-PlanarMonocularSlam_one_person/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/paolo/Documents/PlanarMonocularSlam/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <Eigen/Sparse>
 #include "defs.h"
 #include "camera.h"
 #include "dataset_utils.h"
@@ -28,9 +29,9 @@ namespace pr{
         
             void errorAndJacobian_odom( int pose_i_idx, 
                                         int pose_j_idx, 
-                                        Matrix2_3f& J_odom_pose_i,
-                                        Matrix2_3f& J_odom_pose_j,
-                                        Eigen::Vector2f& odom_error);
+                                        Matrix6_3f& J_odom_pose_i,
+                                        Matrix6_3f& J_odom_pose_j,
+                                        Vector6f& odom_error);
 
             bool errorAndJacobian_proj( int pose_idx, 
                                         int landmark_idx,                                        
@@ -56,6 +57,7 @@ namespace pr{
             float _chi_odom;
             float _chi_proj;
 
+            int _state_size;
             int _n_of_landmarks;
     };
 }
