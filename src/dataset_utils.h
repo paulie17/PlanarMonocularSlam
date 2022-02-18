@@ -7,7 +7,7 @@
 namespace pr{
 
     struct Measurement{
-        EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+        EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
         Camera current_camera_position;
     
         int seq;
@@ -22,15 +22,39 @@ namespace pr{
 
     typedef std::vector<Measurement, Eigen::aligned_allocator<Measurement> > MeasVector;
 
-    Vector3fVector load_trajectory();
+    void load_trajectory(Vector3fVector& odom_trajectory, Vector3fVector& gt_trajectory);
 
     void load_camera_data(  int& z_near,int& z_far,int& width, int& height,
                             Eigen::Matrix3f& camera_matrix, Eigen::Isometry3f& camera_to_robot);
 
     Camera load_camera_data();
 
-    //return the number of landmarks(higher id)
+    //return the number of landmarks(highest id)
     int load_measurements(MeasVector& measurements);
+    
+    template <class T>
+    void prepare_for_plotting(const T& points,FloatVector& x, FloatVector& y, FloatVector& z){
+        x.clear();
+        y.clear();
+        z.clear();
+        int NUM_MEASUREMENTS = points.size();
+        for (int i = 0; i < NUM_MEASUREMENTS; i++){
+            x.push_back(points[i](0));
+            y.push_back(points[i](1));
+            z.push_back(points[i](2));
+        }
+    }    
+    template <class T>
+    void prepare_for_plotting(const T& points,FloatVector& x, FloatVector& y){
+        x.clear();
+        y.clear();
+        int NUM_MEASUREMENTS = points.size();
+        for (int i = 0; i < NUM_MEASUREMENTS; i++){
+            x.push_back(points[i](0));
+            y.push_back(points[i](1));
+        }
+    }    
+    
 
     Vector3fVector load_landmarks_gt();
 

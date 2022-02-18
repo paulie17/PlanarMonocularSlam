@@ -18,15 +18,26 @@ namespace pr{
                         Vector3fVector& landmarks,
                         const MeasVector& measurements);
     
-            //inline float kernelThreshold() const {return _kernel_thereshold;}
+            inline float ProjkernelThreshold() const {return _proj_kernel_threshold;}
 
-            //inline void setKernelThreshold(float kernel_threshold) 
-            //{_kernel_thereshold=kernel_threshold;}
+            inline void setProjKernelThreshold(float kernel_threshold) 
+            {_proj_kernel_threshold=kernel_threshold;}
 
-            void one_round();
+            inline float OdomkernelThreshold() const {return _odom_kernel_threshold;}
+
+            inline void setOdomKernelThreshold(float kernel_threshold) 
+            {_odom_kernel_threshold=kernel_threshold;}
+
+            inline void least_square(int n_iterations){
+                for (int i = 0;i<n_iterations;i++){
+                    one_round();
+                }
+            }
 
         protected:
         
+            void one_round();
+
             void errorAndJacobian_odom( int pose_i_idx, 
                                         int pose_j_idx, 
                                         Matrix6_3f& J_odom_pose_i,
@@ -41,7 +52,9 @@ namespace pr{
 
             void boxplus();
 
-            //float _kernel_thereshold;           //< threshold for the kernel
+            float _proj_kernel_threshold;           //< threshold for projections kernel
+            float _odom_kernel_threshold;           //< threshold for odometry kernel
+            float _damping;                  //< damping, to slow the solution
             Camera _camera;                     //< this variable holds the camera parameters
             Vector3fVector _odometry_displacements; //< store all the measurements of the odometer as displacements between the positions 
             

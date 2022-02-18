@@ -2,16 +2,16 @@
 
 namespace pr{
 
-    Vector3fVector load_trajectory(){
+    void load_trajectory(Vector3fVector& odom_trajectory, Vector3fVector& gt_trajectory){
         
         std::istringstream ss;
         std::string dummy_string;
 
         int current_pose;
         //float dummy_var;
-
-        Vector3fVector odom_trajectory;  
+          
         Eigen::Vector3f odom_pose;
+        Eigen::Vector3f gt_pose;
 
         std::ifstream trajectory_file("../dataset/trajectory.dat");    
 
@@ -21,13 +21,16 @@ namespace pr{
             
             for (int i = 0; i<3; i++){
                 ss >> odom_pose(i);                
-            }                    
+            }       
+            for (int i = 0; i<3; i++){
+                ss >> gt_pose(i);                
+            }                
             odom_trajectory.push_back(odom_pose);
+            gt_trajectory.push_back(gt_pose);
 
             //ss >> dummy_var >> dummy_var >> dummy_var;
             ss.clear();
         }
-        return odom_trajectory;
     }
 
     void load_camera_data(  int& z_near,int& z_far, 

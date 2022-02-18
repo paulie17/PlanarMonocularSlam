@@ -1,4 +1,3 @@
-#include <iostream>
 #include <Eigen/Core>
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
@@ -20,73 +19,81 @@ int main(){
     int n_of_landmarks;
 
     Gnuplot gp;
+    
     Vector3fVector odom_trajectory;
+    Vector3fVector gt_trajectory;
     MeasVector measurements;
     Vector3fVector landmarks_gt;
 
     Vector3fVector landmarks; 
 
-    //vector<double> x_traj, y_traj, z_traj;
-    vector<double> x_l_gt, y_l_gt, z_l_gt;
-    vector<double> x_l, y_l, z_l;
+    FloatVector x_traj, y_traj, z_traj;
+    FloatVector x_traj_gt, y_traj_gt, z_traj_gt;
+    FloatVector x_l_gt, y_l_gt, z_l_gt;
+    FloatVector x_l, y_l, z_l;
 
     pms_solver solver;
 
-    int n_iterations = 10;
+    int n_iterations = 30;
 
-    odom_trajectory = load_trajectory();     
+    load_trajectory(odom_trajectory,gt_trajectory);     
     
-    /*for (int i = 0; i < NUM_MEASUREMENTS; i++){
-        x_traj.push_back(odom_trajectory[i](0));
-        y_traj.push_back(odom_trajectory[i](1));
-        z_traj.push_back(odom_trajectory[i](2));
-    }*/
+    prepare_for_plotting(odom_trajectory,x_traj,y_traj,z_traj);
+    prepare_for_plotting(gt_trajectory,x_traj_gt,y_traj_gt,z_traj_gt);
 
-    //gp << "set term qt 0" << endl;
-    //gp << "splot '-' using 1:2:3 with lines lt rgb 'red' title 'Trajectory'" << endl;
-    //gp.send1d(boost::make_tuple(x_traj, y_traj, z_traj));
+    cout << "Showing the trajectory recorded by odometry:\n";
+    gp << "set term qt 0" << endl;
+    gp << "plot '-' using 1:2 with lines lt rgb 'blue' title 'Odometry Trajectory'," 
+        << "'-' using 1:2 with points lt rgb 'red' title 'Groundtruth Trajectory'" << endl; 
+    gp.send1d(boost::make_tuple(x_traj, y_traj, z_traj));
+    gp.send1d(boost::make_tuple(x_traj_gt, y_traj_gt, z_traj_gt));
         
-    //cin.get();
+    cin.get();
 
     n_of_landmarks = load_measurements(measurements);
 
     landmarks_gt = load_landmarks_gt();
 
-    for (int i = 0; i < (n_of_landmarks + 1); i++){
-        x_l_gt.push_back(landmarks_gt[i](0));
-        y_l_gt.push_back(landmarks_gt[i](1));
-        z_l_gt.push_back(landmarks_gt[i](2));
-    }
-
-    //gp << "splot '-' using 1:2:3 with lines lt rgb 'red' title 'Trajectory',"
-    //    << "'-' using 1:2:3 with points lt rgb 'red' title 'Landmarks GroundTruth'" << endl;
-
-    //gp << "set term qt 1" << endl;
-    //gp << "splot '-' using 1:2:3 with points lt rgb 'red' title 'Landmarks GroundTruth'" << endl;
-    //gp.send1d(boost::make_tuple(x_traj, y_traj, z_traj));
-    //gp.send1d(boost::make_tuple(x_l_gt, y_l_gt, z_l_gt));
-
-    //cin.get();
-
     landmarks = initial_guess(measurements,n_of_landmarks + 1);
 
-    for (int i = 0; i < (n_of_landmarks + 1); i++){
-        x_l.push_back(landmarks[i](0));
-        y_l.push_back(landmarks[i](1));
-        z_l.push_back(landmarks[i](2));
-    }
+    prepare_for_plotting(landmarks_gt,x_l_gt,y_l_gt,z_l_gt);
+    prepare_for_plotting(landmarks,x_l,y_l,z_l);
     
-    /*gp << "splot '-' using 1:2:3 with points lt rgb 'red' title 'Landmarks GroundTruth',"
+    cout << "Showing the landmarks groundtruth and the initial guess by triangulation:\n";
+    gp << "set term qt 1" << endl;
+    gp << "splot '-' using 1:2:3 with points lt rgb 'red' title 'Landmarks GroundTruth',"
         << "'-' using 1:2:3 with points lt rgb 'blue' title 'Landmarks Initial Guess'" << endl; 
     gp.send1d(boost::make_tuple(x_l_gt, y_l_gt, z_l_gt));
     gp.send1d(boost::make_tuple(x_l, y_l, z_l));
-    cin.get();*/
+    cin.get();
 
     solver.init(odom_trajectory,landmarks,measurements);
+    solver.setProjKernelThreshold(1000.0f);
+    solver.setOdomKernelThreshold(0.1f);
 
-    for (int i = 0; i < n_iterations; i++){
-        solver.one_round();
-    }    
+    cout << "Optimization of landmarks and trajectory:\n";    
+    solver.least_square(n_iterations);
+    cout << "Plotting the results:\n";
 
+    prepare_for_plotting(odom_trajectory,x_traj,y_traj,z_traj);
+
+    gp << "set term qt 0" << endl;
+    gp << "plot '-' using 1:2 with lines lt rgb 'blue' title 'Odometry Trajectory'," 
+        << "'-' using 1:2 with points lt rgb 'red' title 'Groundtruth Trajectory'" << endl; 
+    gp.send1d(boost::make_tuple(x_traj, y_traj, z_traj));
+    gp.send1d(boost::make_tuple(x_traj_gt, y_traj_gt, z_traj_gt));
+        
+    cin.get();
+
+    prepare_for_plotting(landmarks_gt,x_l_gt,y_l_gt,z_l_gt);
+    prepare_for_plotting(landmarks,x_l,y_l,z_l);
+    
+    gp << "set term qt 1" << endl;
+    gp << "splot '-' using 1:2:3 with points lt rgb 'red' title 'Landmarks GroundTruth',"
+        << "'-' using 1:2:3 with points lt rgb 'blue' title 'Landmarks Initial Guess'" << endl; 
+    gp.send1d(boost::make_tuple(x_l_gt, y_l_gt, z_l_gt));
+    gp.send1d(boost::make_tuple(x_l, y_l, z_l));
+    cin.get();
+    
     return 0;
 }
