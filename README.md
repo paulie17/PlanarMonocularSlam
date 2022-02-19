@@ -1,5 +1,20 @@
 # PlanarMonocularSlam
 
+### Dependencies (Ubuntu 16.04.3/18.04 LTS)
+
+    CMake build utilities:
+
+    sudo apt install build-essential cmake
+    
+    Eigen3: http://eigen.tuxfamily.org
+
+    sudo apt install libeigen3-dev
+    
+    Gnuplot-Iostream Interface:
+
+    sudo apt install libgnuplot-iostream-dev
+
+
 ### Compilation
 From the system console, execute the build sequence (out of source build):
 
