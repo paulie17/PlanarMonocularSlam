@@ -26,8 +26,8 @@ int main(){
 
     Vector3fVector landmarks; 
 
-    FloatVector x_traj, y_traj, z_traj;
-    FloatVector x_traj_gt, y_traj_gt, z_traj_gt;
+    FloatVector x_traj, y_traj;
+    FloatVector x_traj_gt, y_traj_gt;
     FloatVector x_l_gt, y_l_gt, z_l_gt;
     FloatVector x_l, y_l, z_l;
     IntVector discarded_landmarks;
@@ -38,15 +38,15 @@ int main(){
 
     load_trajectory(odom_trajectory,gt_trajectory);     
     
-    prepare_for_plotting(odom_trajectory,x_traj,y_traj,z_traj);
-    prepare_for_plotting(gt_trajectory,x_traj_gt,y_traj_gt,z_traj_gt);
+    prepare_for_plotting(odom_trajectory,x_traj,y_traj);
+    prepare_for_plotting(gt_trajectory,x_traj_gt,y_traj_gt);
 
     cout << "Showing the trajectory recorded by odometry together with the groundtruth trajectory.\n";
     gp << "set term qt 0" << endl;
     gp << "plot '-' using 1:2 with lines lt rgb 'red' title 'Groundtruth Trajectory'," 
         << "'-' using 1:2 with lines lt rgb 'blue' title 'Odometry Trajectory'" << endl; 
-    gp.send1d(boost::make_tuple(x_traj_gt, y_traj_gt, z_traj_gt));
-    gp.send1d(boost::make_tuple(x_traj, y_traj, z_traj));            
+    gp.send1d(boost::make_tuple(x_traj_gt, y_traj_gt));
+    gp.send1d(boost::make_tuple(x_traj, y_traj));            
     cout << "Press any key to continue. \n";
     cin.get();
 
@@ -87,13 +87,13 @@ int main(){
 
     cout << "Plotting the results:\n";
 
-    prepare_for_plotting(odom_trajectory,x_traj,y_traj,z_traj);
+    prepare_for_plotting(odom_trajectory,x_traj,y_traj);
 
     gp << "set term qt 0" << endl;
     gp << "plot '-' using 1:2 with lines lt rgb 'red' title 'Groundtruth Trajectory'," 
         << "'-' using 1:2 with lines lt rgb 'blue' title 'Odometry Trajectory after LS Optimization'" << endl; 
-    gp.send1d(boost::make_tuple(x_traj_gt, y_traj_gt, z_traj_gt));
-    gp.send1d(boost::make_tuple(x_traj, y_traj, z_traj));        
+    gp.send1d(boost::make_tuple(x_traj_gt, y_traj_gt));
+    gp.send1d(boost::make_tuple(x_traj, y_traj));        
     cout << "Press any key to continue. \n";
     cin.get();
 
