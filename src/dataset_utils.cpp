@@ -196,7 +196,7 @@ namespace pms{
         return landmarks_gt;
     }
 
-    Vector3fVector initial_guess(MeasVector measurements,int NUM_LANDMARKS) {
+    Vector3fVector initial_guess(MeasVector& measurements,int NUM_LANDMARKS, IntVector& discarded) {
         
         Eigen::Vector3f current_bearing;
         Eigen::Vector3f current_camera;
@@ -258,6 +258,7 @@ namespace pms{
 
             if(n_of_corrispondences<2){
                 //std::cout << "Landmark: "<< i << " has to be discarded, since there are "<< n_of_corrispondences << " corrispondences. \n";
+                discarded.push_back(i);
                 solution << NAN,NAN,NAN;
             }
             else{

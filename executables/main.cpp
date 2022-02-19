@@ -30,6 +30,7 @@ int main(){
     FloatVector x_traj_gt, y_traj_gt, z_traj_gt;
     FloatVector x_l_gt, y_l_gt, z_l_gt;
     FloatVector x_l, y_l, z_l;
+    IntVector discarded_landmarks;
 
     pms_solver solver;
 
@@ -53,7 +54,9 @@ int main(){
 
     landmarks_gt = load_landmarks_gt();
 
-    landmarks = initial_guess(measurements,n_of_landmarks);
+    landmarks = initial_guess(measurements,n_of_landmarks,discarded_landmarks);
+
+    cout << n_of_landmarks << " have been detected, " << discarded_landmarks.size() << " have been discarded for lack of enough measurements necessary for tringulation. \n" ; 
 
     prepare_for_plotting(landmarks_gt,x_l_gt,y_l_gt,z_l_gt);
     prepare_for_plotting(landmarks,x_l,y_l,z_l);

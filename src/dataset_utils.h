@@ -32,7 +32,7 @@ namespace pms{
     //return the number of landmarks(highest id)
     int load_measurements(MeasVector& measurements);
     
-    Vector3fVector initial_guess(MeasVector measurements,int NUM_LANDMARKS);
+    Vector3fVector initial_guess(MeasVector& measurements,int NUM_LANDMARKS,IntVector& discarded);
 
     template <class T>
     void prepare_for_plotting(const T& points,FloatVector& x, FloatVector& y, FloatVector& z){
