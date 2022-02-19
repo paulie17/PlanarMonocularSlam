@@ -1,5 +1,0 @@
-/home/paolo/Documents/PlanarMonocularSlam/build/CMakeFiles/rebuild_cache.dir
-/home/paolo/Documents/PlanarMonocularSlam/build/CMakeFiles/edit_cache.dir
-/home/paolo/Documents/PlanarMonocularSlam/build/executables/CMakeFiles/rebuild_cache.dir
-/home/paolo/Documents/PlanarMonocularSlam/build/executables/CMakeFiles/edit_cache.dir
-/home/paolo/Documents/PlanarMonocularSlam/build/executables/CMakeFiles/main.dir

@@ -1,6 +1,6 @@
 #include "camera.h"
 
-namespace pr {
+namespace pms {
   Camera::Camera(int rows,
                  int cols,
                  const Eigen::Matrix3f& camera_matrix,

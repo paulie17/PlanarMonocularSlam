@@ -5,7 +5,7 @@
 #include "camera.h"
 #include "dataset_utils.h"
 
-namespace pr{
+namespace pms{
 
     // planar monocular slam solver
     class pms_solver{
@@ -28,15 +28,15 @@ namespace pr{
             inline void setOdomKernelThreshold(float kernel_threshold) 
             {_odom_kernel_threshold=kernel_threshold;}
 
-            inline void least_square(int n_iterations){
-                for (int i = 0;i<n_iterations;i++){
-                    one_round();
-                }
-            }
-
-        protected:
+            //! chi square of the odometry measurements
+            const float chiOdom() const {return _chi_odom;}
         
-            void one_round();
+            //! chi square of the projection measurements
+            const float chiProj() const {return _chi_proj;}
+
+            void one_round();            
+
+        protected:                    
 
             void errorAndJacobian_odom( int pose_i_idx, 
                                         int pose_j_idx, 

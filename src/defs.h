@@ -4,7 +4,7 @@
 #include <Eigen/StdVector>
 #include <iostream>
 
-namespace pr {    
+namespace pms {    
 
     typedef std::vector<Eigen::Vector4f, Eigen::aligned_allocator<Eigen::Vector4f> > Vector4fVector;
     typedef std::vector<Eigen::Vector3f, Eigen::aligned_allocator<Eigen::Vector3f> > Vector3fVector;

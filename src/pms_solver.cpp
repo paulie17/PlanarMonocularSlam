@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cmath>
 
-namespace pr {
+namespace pms {
 
     pms_solver::pms_solver(){
         //_kernel_thereshold = 0.1;           
@@ -269,9 +269,5 @@ namespace pr {
         
         boxplus();
 
-        std::cout << "Chi odom: " << _chi_odom << std::endl;
-        std::cout << "Chi proj: " << _chi_proj << std::endl;
-
-        //std::cin.get();
     }
 }
