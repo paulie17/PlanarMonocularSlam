@@ -7,7 +7,6 @@
 
 #include "gnuplot-iostream.h"
 #include "dataset_utils.h"
-#include "bootstrap.h"
 #include "pms_solver.h"
 
 using namespace std;
@@ -54,7 +53,7 @@ int main(){
 
     landmarks_gt = load_landmarks_gt();
 
-    landmarks = initial_guess(measurements,n_of_landmarks + 1);
+    landmarks = initial_guess(measurements,n_of_landmarks);
 
     prepare_for_plotting(landmarks_gt,x_l_gt,y_l_gt,z_l_gt);
     prepare_for_plotting(landmarks,x_l,y_l,z_l);

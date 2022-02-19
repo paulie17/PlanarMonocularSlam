@@ -32,13 +32,15 @@ namespace pms{
     //return the number of landmarks(highest id)
     int load_measurements(MeasVector& measurements);
     
+    Vector3fVector initial_guess(MeasVector measurements,int NUM_LANDMARKS);
+
     template <class T>
     void prepare_for_plotting(const T& points,FloatVector& x, FloatVector& y, FloatVector& z){
         x.clear();
         y.clear();
         z.clear();
-        int NUM_MEASUREMENTS = points.size();
-        for (int i = 0; i < NUM_MEASUREMENTS; i++){
+        int num_points = points.size();
+        for (int i = 0; i < num_points; i++){
             x.push_back(points[i](0));
             y.push_back(points[i](1));
             z.push_back(points[i](2));
@@ -48,8 +50,8 @@ namespace pms{
     void prepare_for_plotting(const T& points,FloatVector& x, FloatVector& y){
         x.clear();
         y.clear();
-        int NUM_MEASUREMENTS = points.size();
-        for (int i = 0; i < NUM_MEASUREMENTS; i++){
+        int num_points = points.size();
+        for (int i = 0; i < num_points; i++){
             x.push_back(points[i](0));
             y.push_back(points[i](1));
         }
@@ -59,6 +61,5 @@ namespace pms{
     Vector3fVector load_landmarks_gt();
 
     const int NUM_MEASUREMENTS = 200;
-    //const int NUM_LANDMARKS= 1000;
 
 }
