@@ -1,6 +1,6 @@
 # PlanarMonocularSlam
 
-### Dependencies (Ubuntu 16.04.3/18.04 LTS)
+### Dependencies (Ubuntu 20.04 LTS or previous)
 
     CMake build utilities:
 
