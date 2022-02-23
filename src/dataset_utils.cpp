@@ -198,6 +198,10 @@ namespace pms{
 
     Vector3fVector initial_guess(MeasVector& measurements,int NUM_LANDMARKS, IntVector& discarded) {
         
+        // algorithm from
+        // Slabaugh, Greg, Ron Schafer, and Mark Livingston. "Optimal ray intersection for computing 3d points from n-view correspondences." 
+        // Deliverable Report (2001): 1-11.
+
         Eigen::Vector3f current_bearing;
         Eigen::Vector3f current_camera;
 

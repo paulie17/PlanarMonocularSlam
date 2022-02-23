@@ -34,7 +34,7 @@ int main(){
 
     pms_solver solver;
 
-    int n_iterations = 30;
+    int n_iterations = 50;
 
     load_trajectory(odom_trajectory,gt_trajectory);     
     
@@ -72,7 +72,7 @@ int main(){
 
     solver.init(odom_trajectory,landmarks,measurements);
     solver.setProjKernelThreshold(1000.0f);
-    solver.setOdomKernelThreshold(0.1f);
+    solver.setOdomKernelThreshold(0.001f);
 
     cout << "Optimization of landmarks and trajectory:\n";   
 
