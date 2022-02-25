@@ -1,6 +1,5 @@
 #pragma once
 #include <cmath>
-#include <Eigen/Sparse>
 #include "defs.h"
 #include "camera.h"
 #include "dataset_utils.h"
@@ -52,6 +51,9 @@ namespace pms{
 
             void boxplus();
 
+            template <class Template_matrix>
+            void fill_triplet_list(tripletList& triplets, Template_matrix& mat, int row, int column);
+
             float _proj_kernel_threshold;           //< threshold for projections kernel
             float _odom_kernel_threshold;           //< threshold for odometry kernel
             float _damping;                  //< damping, to slow the solution
@@ -63,7 +65,9 @@ namespace pms{
             Vector3fVector* _landmarks_estimate;
 
             Eigen::Isometry3f _camera_to_robot;
-            Eigen::MatrixXf _H;
+            
+            Eigen::SparseMatrix<float> _H;
+            
             Eigen::VectorXf _b;
             Eigen::VectorXf _delta_x;
             

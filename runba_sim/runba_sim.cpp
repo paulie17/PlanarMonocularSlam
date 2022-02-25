@@ -19,76 +19,99 @@ using namespace std;
 
 int _is_pinhole = 1;
 
-// joy stuff
-struct JoyArgs
-{
-  int fd;
-  double max_tv = 0.001;
-  double max_rv = 0.001;
-  int tv_axis = 1;
-  int rv_axis = 3;
-  int boost_button = 4;
-  int halt_button = 5;
-  const char *joy_device = "/dev/input/js0";
-};
 
-volatile bool run = true;
+char getch(void)
+{
+    char buf = 0;
+    struct termios old = {0};
+    fflush(stdout);
+    if(tcgetattr(0, &old) < 0)
+        perror("tcsetattr()");
+    old.c_lflag &= ~ICANON;
+    old.c_lflag &= ~ECHO;
+    old.c_cc[VMIN] = 1;
+    old.c_cc[VTIME] = 0;
+    if(tcsetattr(0, TCSANOW, &old) < 0)
+        perror("tcsetattr ICANON");
+    if(read(0, &buf, 1) < 0)
+        perror("read()");
+    old.c_lflag |= ICANON;
+    old.c_lflag |= ECHO;
+    if(tcsetattr(0, TCSADRAIN, &old) < 0)
+        perror("tcsetattr ~ICANON");
+    return buf;
+ }
+
+// joy stuff
+// struct JoyArgs
+// {
+//   int fd;
+//   double max_tv = 0.001;
+//   double max_rv = 0.001;
+//   int tv_axis = 1;
+//   int rv_axis = 3;
+//   int boost_button = 4;
+//   int halt_button = 5;
+//   const char *joy_device = "/dev/input/js0";
+// };
+
+// volatile bool run = true;
 volatile float des_tv = 0, des_rv = 0;
 
 /** this stuff is to read the joystick**/
-void *joyThread(void *args_)
-{
-  JoyArgs *args = (JoyArgs *)args_;
-  args->fd = open(args->joy_device, O_RDONLY | O_NONBLOCK);
-  if (args->fd < 0)
-  {
-    cerr << "no joy found on [" << args->joy_device << "]\n";
-    return 0;
-  }
+// void *joyThread(void *args_)
+// {
+//   JoyArgs *args = (JoyArgs *)args_;
+//   args->fd = open(args->joy_device, O_RDONLY | O_NONBLOCK);
+//   if (args->fd < 0)
+//   {
+//     cerr << "no joy found on [" << args->joy_device << "]\n";
+//     return 0;
+//   }
 
-  float tv = 0;
-  float rv = 0;
-  float tvscale = args->max_tv / 32767.0;
-  float rvscale = args->max_rv / 32767.0;
-  float gain = 1;
+//   float tv = 0;
+//   float rv = 0;
+//   float tvscale = args->max_tv / 32767.0;
+//   float rvscale = args->max_rv / 32767.0;
+//   float gain = 1;
 
-  struct js_event e;
-  while (run)
-  {
-    if (read(args->fd, &e, sizeof(e)) > 0)
-    {
-      fflush(stdout);
-      int axis = e.number;
-      int value = e.value;
-      int type = e.type;
-      if (axis == args->tv_axis && type == 2)
-      {
-        tv = -value * tvscale;
-      }
-      if (axis == args->rv_axis && type == 2)
-      {
-        rv = -value * rvscale;
-      }
-      if (axis == args->halt_button && type == 1)
-      {
-        tv = 0;
-        rv = 0;
-      }
-      else if (axis == args->boost_button && type == 1)
-      {
-        if (value)
-          gain = 2.0;
-        else
-          gain = 1.0;
-      }
-      des_rv = rv * gain;
-      des_tv = tv * gain;
-    }
-    usleep(10000); // 10 ms
-  }
-  close(args->fd);
-  return 0;
-};
+//   struct js_event e;
+//   while (run)
+//   {
+//     if (read(args->fd, &e, sizeof(e)) > 0)
+//     {
+//       fflush(stdout);
+//       int axis = e.number;
+//       int value = e.value;
+//       int type = e.type;
+//       if (axis == args->tv_axis && type == 2)
+//       {
+//         tv = -value * tvscale;
+//       }
+//       if (axis == args->rv_axis && type == 2)
+//       {
+//         rv = -value * rvscale;
+//       }
+//       if (axis == args->halt_button && type == 1)
+//       {
+//         tv = 0;
+//         rv = 0;
+//       }
+//       else if (axis == args->boost_button && type == 1)
+//       {
+//         if (value)
+//           gain = 2.0;
+//         else
+//           gain = 1.0;
+//       }
+//       des_rv = rv * gain;
+//       des_tv = tv * gain;
+//     }
+//     usleep(10000); // 10 ms
+//   }
+//   close(args->fd);
+//   return 0;
+// };
 
 // always contemporary, never out of fashion
 Eigen::Vector3f t2v(const Eigen::Isometry2f &iso)
@@ -367,9 +390,9 @@ int main(int argc, char **argv)
   // 4. initialize joy thrtead to control robot
   // it writes on two volatile variables
   // des_rv and des_tv
-  JoyArgs joy_args;
-  pthread_t joy_thread;
-  pthread_create(&joy_thread, 0, joyThread, &joy_args);
+  // JoyArgs joy_args;
+  // pthread_t joy_thread;
+  // pthread_create(&joy_thread, 0, joyThread, &joy_args);
 
   //  5. initialize variables used in simulation (robot pose, counters etc)
 
@@ -389,7 +412,7 @@ int main(int argc, char **argv)
   float min_rdisp = 0.2;
 
   // save the trajectory (true and odom) here
-  os.open("trajectoy.dat");
+  os.open("trajectory.dat");
 
   bool first = true;
   // progressive number of measurement
@@ -403,15 +426,34 @@ int main(int argc, char **argv)
   const float std = 0.001;
   std::default_random_engine generator;
   std::normal_distribution<float> distribution(mean, std);
+  char input;
 
   // 7. start simulation
   while (1)
   {
     // if joy says we move, we move, otherwise we stay
     // exceptiom on 1st cycle, when we generate the measurement anyway
+    input = getch();
+    switch(input) {
+    case 'w':
+      des_rv = 0.0; des_tv = 0.1;
+      break;
+    case 's':
+      des_rv = 0.0; des_tv = -0.1;
+      break;
+    case 'a':
+      des_rv = 0.1; des_tv = 0.02;
+      break;
+    case 'd':
+      des_rv = -0.1; des_tv = 0.02;
+      break;
+    default:
+    cout << "Not a valid input! \n";
+      // code block
+  }
     if (fabs(des_rv) >= 1e-5 || fabs(des_tv) >= 1e-5 || first)
     {
-      // compute a motion control from oystic command
+      // compute a motion control from joystic command
       float rv = des_rv;
       float tv = des_tv;
       Eigen::Vector3f motion_vector(tv, 0, rv);
