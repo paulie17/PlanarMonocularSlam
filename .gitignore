@@ -2,3 +2,5 @@ build
 dataset
 .vscode
 executables/backups
+runba_sim
+!runba_sim/runba_sim.cpp

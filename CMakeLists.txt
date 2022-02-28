@@ -8,8 +8,6 @@ project(planar_monocular_slam)
 set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -O3 -DNDEBUG") #ds enable all warnings, c++11 features, enable maximum optimization and disable debug symbols
 
-list(APPEND CMAKE_MODULE_PATH ${planar_monocular_slam_SOURCE_DIR}/cmake_modules)
-
 #ds find and set up dependencies
 
 #find_package(g2o REQUIRED)
@@ -17,9 +15,6 @@ list(APPEND CMAKE_MODULE_PATH ${planar_monocular_slam_SOURCE_DIR}/cmake_modules)
 
 find_package(Eigen3 REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIR})
-
-find_package(SuiteSparse REQUIRED)
-include_directories(${SuiteSparse_INCLUDE_DIRS})
 
 find_package(Boost 1.40.0 COMPONENTS filesystem system iostreams REQUIRED)
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/gnuplot-iostream")

@@ -1,6 +1,4 @@
 #include "pms_solver.h"
-
-#include <Eigen/CholmodSupport>
 #include <iostream>
 #include <cmath>
 
@@ -189,8 +187,7 @@ namespace pms {
         _delta_x.setZero(); 
         tripletList H_triplets;  
 
-        Eigen::CholmodDecomposiiton<Eigen::SparseMatrix<float>> solver;      
-
+        Eigen::SparseQR<Eigen::SparseMatrix<float>, Eigen::COLAMDOrdering<int>> solver;      
         int n_of_sensed_landmarks;
         int landmark_idx, pose_idx;                        
 
