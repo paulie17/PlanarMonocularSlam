@@ -164,8 +164,7 @@ namespace pms {
         }
     }
 
-    template <class Template_matrix>
-    void pms_solver::fill_triplet_list(tripletList& triplets, Template_matrix& mat, int row, int column){
+    void pms_solver::fill_triplet_list(tripletList& triplets, const Eigen::MatrixXf& mat, int row, int column){
         int n_rows = mat.rows();
         int n_cols = mat.cols();
 
@@ -173,8 +172,20 @@ namespace pms {
         for(int i = 0; i < n_rows; i++ ){
             for (int j = 0; j < n_cols; j++){
                 //std::cout << "i: " << i+row << ", j:" << j+column << ", val: " << mat(i,j) << std::endl;
-                //std::cin.get();
                 triplets.push_back(T(i+row,j+column,mat(i,j)));
+            }
+        }
+    }
+
+    void pms_solver::fill_sparse_values(const Eigen::MatrixXf& mat, int row, int column){
+        int n_rows = mat.rows();
+        int n_cols = mat.cols();
+
+        //std::cout << mat << std::endl;
+        for(int i = 0; i < n_rows; i++ ){
+            for (int j = 0; j < n_cols; j++){
+                //std::cout << "i: " << i+row << ", j:" << j+column << ", val: " << mat(i,j) << std::endl;
+                _H.coeffRef(i+row,j+column) += mat(i,j);
             }
         }
     }
@@ -185,9 +196,15 @@ namespace pms {
         _H.setZero();
         _b.setZero();  
         _delta_x.setZero(); 
-        tripletList H_triplets;  
+        // tripletList H_triplets;  
 
-        Eigen::SparseQR<Eigen::SparseMatrix<float>, Eigen::COLAMDOrdering<int>> solver;      
+        // Eigen::SparseQR<Eigen::SparseMatrix<float>, Eigen::COLAMDOrdering<int>> solver;      
+        // Eigen::SimplicialLDLT<Eigen::SparseMatrix<float>> solver;    
+        // Eigen::SimplicialLLT<Eigen::SparseMatrix<float>,
+                                // Eigen::Upper,
+                                // Eigen::COLAMDOrdering<int>> solver; 
+        Eigen::SimplicialCholesky<Eigen::SparseMatrix<float>> solver;    
+
         int n_of_sensed_landmarks;
         int landmark_idx, pose_idx;                        
 
@@ -232,13 +249,17 @@ namespace pms {
                 landmark_H_idx = 3*(NUM_MEASUREMENTS) + (landmark_idx)*3;
                 pose_H_idx = (pose_idx)*3;
                 
-                fill_triplet_list(H_triplets,J_proj_landmark.transpose()*J_proj_landmark,landmark_H_idx,landmark_H_idx);
+                // fill_triplet_list(H_triplets,J_proj_landmark.transpose()*J_proj_landmark,landmark_H_idx,landmark_H_idx);
+                fill_sparse_values(J_proj_landmark.transpose()*J_proj_landmark,landmark_H_idx,landmark_H_idx);
                 //_H.block<3,3>(landmark_H_idx,landmark_H_idx) += J_proj_landmark.transpose()*J_proj_landmark;
-                fill_triplet_list(H_triplets,J_proj_landmark.transpose()*J_proj_pose,landmark_H_idx,pose_H_idx);
+                // fill_triplet_list(H_triplets,J_proj_landmark.transpose()*J_proj_pose,landmark_H_idx,pose_H_idx);
+                fill_sparse_values(J_proj_landmark.transpose()*J_proj_pose,landmark_H_idx,pose_H_idx);
                 //_H.block<3,3>(landmark_H_idx,pose_H_idx) += J_proj_landmark.transpose()*J_proj_pose;
-                fill_triplet_list(H_triplets,J_proj_pose.transpose()*J_proj_pose,pose_H_idx,pose_H_idx);
+                // fill_triplet_list(H_triplets,J_proj_pose.transpose()*J_proj_pose,pose_H_idx,pose_H_idx);
+                fill_sparse_values(J_proj_pose.transpose()*J_proj_pose,pose_H_idx,pose_H_idx);
                 //_H.block<3,3>(pose_H_idx,pose_H_idx) += J_proj_pose.transpose()*J_proj_pose;
-                fill_triplet_list(H_triplets,J_proj_pose.transpose()*J_proj_landmark,pose_H_idx,landmark_H_idx);
+                // fill_triplet_list(H_triplets,J_proj_pose.transpose()*J_proj_landmark,pose_H_idx,landmark_H_idx);
+                fill_sparse_values(J_proj_pose.transpose()*J_proj_landmark,pose_H_idx,landmark_H_idx);
                 //_H.block<3,3>(pose_H_idx,landmark_H_idx) += J_proj_pose.transpose()*J_proj_landmark;                       
 
                 //fill_triplet_list(b_triplets,J_proj_pose.transpose() * proj_error,pose_H_idx,0);
@@ -265,13 +286,21 @@ namespace pms {
             pose_i_H_idx =  (pose_i_idx)*3;
             pose_j_H_idx =  (pose_j_idx)*3;
 
-            fill_triplet_list(H_triplets,J_odom_pose_i.transpose()*J_odom_pose_i,pose_i_H_idx,pose_i_H_idx);
+            // fill_triplet_list(H_triplets,J_odom_pose_i.transpose()*J_odom_pose_i,pose_i_H_idx,pose_i_H_idx);
+            fill_sparse_values(J_odom_pose_i.transpose()*J_odom_pose_i,pose_i_H_idx,pose_i_H_idx);
+
             //_H.block<3,3>(pose_i_H_idx,pose_i_H_idx) += J_odom_pose_i.transpose()*J_odom_pose_i;
-            fill_triplet_list(H_triplets,J_odom_pose_i.transpose()*J_odom_pose_j,pose_i_H_idx,pose_j_H_idx);
+            // fill_triplet_list(H_triplets,J_odom_pose_i.transpose()*J_odom_pose_j,pose_i_H_idx,pose_j_H_idx);
+            fill_sparse_values(J_odom_pose_i.transpose()*J_odom_pose_j,pose_i_H_idx,pose_j_H_idx);
+
             //_H.block<3,3>(pose_i_H_idx,pose_j_H_idx) += J_odom_pose_i.transpose()*J_odom_pose_j;
-            fill_triplet_list(H_triplets,J_odom_pose_j.transpose()*J_odom_pose_j,pose_j_H_idx,pose_j_H_idx);
+            // fill_triplet_list(H_triplets,J_odom_pose_j.transpose()*J_odom_pose_j,pose_j_H_idx,pose_j_H_idx);
+            fill_sparse_values(J_odom_pose_j.transpose()*J_odom_pose_j,pose_j_H_idx,pose_j_H_idx);
+
             //_H.block<3,3>(pose_j_H_idx,pose_j_H_idx) += J_odom_pose_j.transpose()*J_odom_pose_j;
-            fill_triplet_list(H_triplets,J_odom_pose_j.transpose()*J_odom_pose_i,pose_j_H_idx,pose_i_H_idx);
+            // fill_triplet_list(H_triplets,J_odom_pose_j.transpose()*J_odom_pose_i,pose_j_H_idx,pose_i_H_idx);
+            fill_sparse_values(J_odom_pose_j.transpose()*J_odom_pose_i,pose_j_H_idx,pose_i_H_idx);
+
             //_H.block<3,3>(pose_j_H_idx,pose_i_H_idx) += J_odom_pose_j.transpose()*J_odom_pose_i;                  
             
             //fill_triplet_list(b_triplets,J_odom_pose_i.transpose() * odom_error,pose_i_H_idx,0);
@@ -280,11 +309,13 @@ namespace pms {
             _b.segment<3>(pose_j_H_idx) += J_odom_pose_j.transpose() * odom_error;            
         }
         
-        _H.setFromTriplets(H_triplets.begin(),H_triplets.end());
+        // _H.setFromTriplets(H_triplets.begin(),H_triplets.end());
         _H.makeCompressed();
         //_b.setFromTriplets(b_triplets.begin(),b_triplets.end());
         
-        solver.compute(_H);
+        // solver.compute(_H);
+        solver.analyzePattern(_H);   // for this step the numerical values of A are not used
+        solver.factorize(_H);
         if(solver.info()!=Eigen::Success) {
         // decomposition failed
         std::cout << "Decomposition failed! \n";
@@ -293,6 +324,8 @@ namespace pms {
         if(solver.info()!=Eigen::Success) {
         std::cout << "Solving failed! \n";        
         }
+        // std::cout << _b << std::endl;
+        // std::cin.get();
         //_H +=Eigen::MatrixXf::Identity(_state_size,_state_size)*_damping;
         //_delta_x.tail += _H.ldlt().solve(-_b);
         //if (lock_poses){

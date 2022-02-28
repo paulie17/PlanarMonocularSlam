@@ -51,8 +51,8 @@ namespace pms{
 
             void boxplus();
 
-            template <class Template_matrix>
-            void fill_triplet_list(tripletList& triplets, Template_matrix& mat, int row, int column);
+            void fill_triplet_list(tripletList& triplets, const Eigen::MatrixXf& mat, int row, int column);
+            void fill_sparse_values(const Eigen::MatrixXf& mat, int row, int column);
 
             float _proj_kernel_threshold;           //< threshold for projections kernel
             float _odom_kernel_threshold;           //< threshold for odometry kernel
