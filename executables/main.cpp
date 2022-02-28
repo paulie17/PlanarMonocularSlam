@@ -50,9 +50,11 @@ int main(){
     cout << "Press any key to continue. \n";
     cin.get();
 
-    n_of_landmarks = load_measurements(measurements);
+    load_measurements(measurements);
 
     landmarks_gt = load_landmarks_gt();
+
+    n_of_landmarks = data_association(measurements);
 
     landmarks = initial_guess(measurements,n_of_landmarks,discarded_landmarks);
 

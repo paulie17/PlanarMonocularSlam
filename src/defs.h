@@ -23,8 +23,10 @@ namespace pms {
 
     typedef Eigen::Matrix<float, 6, 6> Matrix6f;
     typedef Eigen::Matrix<float, 6, 1> Vector6f;
-
+    typedef Eigen::Matrix<float, 10, 1> Vector10f;
+    
     typedef std::vector<Vector6f, Eigen::aligned_allocator<Vector6f> > Vector6fVector;
+    typedef std::vector<Vector10f, Eigen::aligned_allocator<Vector10f> > Vector10fVector;
 
     typedef Eigen::Matrix<float, 9, 6> Matrix9_6f;
     typedef Eigen::Matrix<float, 9, 9> Matrix9f;
