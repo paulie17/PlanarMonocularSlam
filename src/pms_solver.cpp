@@ -196,14 +196,13 @@ namespace pms {
         _H.setZero();
         _b.setZero();  
         _delta_x.setZero(); 
-        // tripletList H_triplets;  
+        tripletList H_triplets;  
 
         // Eigen::SparseQR<Eigen::SparseMatrix<float>, Eigen::COLAMDOrdering<int>> solver;      
         // Eigen::SimplicialLDLT<Eigen::SparseMatrix<float>> solver;    
-        // Eigen::SimplicialLLT<Eigen::SparseMatrix<float>,
-                                // Eigen::Upper,
-                                // Eigen::COLAMDOrdering<int>> solver; 
-        Eigen::SimplicialCholesky<Eigen::SparseMatrix<float>> solver;    
+        // Eigen::SimplicialLLT<Eigen::SparseMatrix<float>,Eigen::Upper,Eigen::COLAMDOrdering<int>> solver; 
+        // Eigen::SimplicialCholesky<Eigen::SparseMatrix<float>> solver;    
+        Eigen::LeastSquaresConjugateGradient<Eigen::SparseMatrix<float>> solver;
 
         int n_of_sensed_landmarks;
         int landmark_idx, pose_idx;                        
@@ -249,17 +248,17 @@ namespace pms {
                 landmark_H_idx = 3*(NUM_MEASUREMENTS) + (landmark_idx)*3;
                 pose_H_idx = (pose_idx)*3;
                 
-                // fill_triplet_list(H_triplets,J_proj_landmark.transpose()*J_proj_landmark,landmark_H_idx,landmark_H_idx);
-                fill_sparse_values(J_proj_landmark.transpose()*J_proj_landmark,landmark_H_idx,landmark_H_idx);
+                fill_triplet_list(H_triplets,J_proj_landmark.transpose()*J_proj_landmark,landmark_H_idx,landmark_H_idx);
+                // fill_sparse_values(J_proj_landmark.transpose()*J_proj_landmark,landmark_H_idx,landmark_H_idx);
                 //_H.block<3,3>(landmark_H_idx,landmark_H_idx) += J_proj_landmark.transpose()*J_proj_landmark;
-                // fill_triplet_list(H_triplets,J_proj_landmark.transpose()*J_proj_pose,landmark_H_idx,pose_H_idx);
-                fill_sparse_values(J_proj_landmark.transpose()*J_proj_pose,landmark_H_idx,pose_H_idx);
+                fill_triplet_list(H_triplets,J_proj_landmark.transpose()*J_proj_pose,landmark_H_idx,pose_H_idx);
+                // fill_sparse_values(J_proj_landmark.transpose()*J_proj_pose,landmark_H_idx,pose_H_idx);
                 //_H.block<3,3>(landmark_H_idx,pose_H_idx) += J_proj_landmark.transpose()*J_proj_pose;
-                // fill_triplet_list(H_triplets,J_proj_pose.transpose()*J_proj_pose,pose_H_idx,pose_H_idx);
-                fill_sparse_values(J_proj_pose.transpose()*J_proj_pose,pose_H_idx,pose_H_idx);
+                fill_triplet_list(H_triplets,J_proj_pose.transpose()*J_proj_pose,pose_H_idx,pose_H_idx);
+                // fill_sparse_values(J_proj_pose.transpose()*J_proj_pose,pose_H_idx,pose_H_idx);
                 //_H.block<3,3>(pose_H_idx,pose_H_idx) += J_proj_pose.transpose()*J_proj_pose;
-                // fill_triplet_list(H_triplets,J_proj_pose.transpose()*J_proj_landmark,pose_H_idx,landmark_H_idx);
-                fill_sparse_values(J_proj_pose.transpose()*J_proj_landmark,pose_H_idx,landmark_H_idx);
+                fill_triplet_list(H_triplets,J_proj_pose.transpose()*J_proj_landmark,pose_H_idx,landmark_H_idx);
+                // fill_sparse_values(J_proj_pose.transpose()*J_proj_landmark,pose_H_idx,landmark_H_idx);
                 //_H.block<3,3>(pose_H_idx,landmark_H_idx) += J_proj_pose.transpose()*J_proj_landmark;                       
 
                 //fill_triplet_list(b_triplets,J_proj_pose.transpose() * proj_error,pose_H_idx,0);
@@ -286,20 +285,20 @@ namespace pms {
             pose_i_H_idx =  (pose_i_idx)*3;
             pose_j_H_idx =  (pose_j_idx)*3;
 
-            // fill_triplet_list(H_triplets,J_odom_pose_i.transpose()*J_odom_pose_i,pose_i_H_idx,pose_i_H_idx);
-            fill_sparse_values(J_odom_pose_i.transpose()*J_odom_pose_i,pose_i_H_idx,pose_i_H_idx);
+            fill_triplet_list(H_triplets,J_odom_pose_i.transpose()*J_odom_pose_i,pose_i_H_idx,pose_i_H_idx);
+            // fill_sparse_values(J_odom_pose_i.transpose()*J_odom_pose_i,pose_i_H_idx,pose_i_H_idx);
 
             //_H.block<3,3>(pose_i_H_idx,pose_i_H_idx) += J_odom_pose_i.transpose()*J_odom_pose_i;
-            // fill_triplet_list(H_triplets,J_odom_pose_i.transpose()*J_odom_pose_j,pose_i_H_idx,pose_j_H_idx);
-            fill_sparse_values(J_odom_pose_i.transpose()*J_odom_pose_j,pose_i_H_idx,pose_j_H_idx);
+            fill_triplet_list(H_triplets,J_odom_pose_i.transpose()*J_odom_pose_j,pose_i_H_idx,pose_j_H_idx);
+            // fill_sparse_values(J_odom_pose_i.transpose()*J_odom_pose_j,pose_i_H_idx,pose_j_H_idx);
 
             //_H.block<3,3>(pose_i_H_idx,pose_j_H_idx) += J_odom_pose_i.transpose()*J_odom_pose_j;
-            // fill_triplet_list(H_triplets,J_odom_pose_j.transpose()*J_odom_pose_j,pose_j_H_idx,pose_j_H_idx);
-            fill_sparse_values(J_odom_pose_j.transpose()*J_odom_pose_j,pose_j_H_idx,pose_j_H_idx);
+            fill_triplet_list(H_triplets,J_odom_pose_j.transpose()*J_odom_pose_j,pose_j_H_idx,pose_j_H_idx);
+            // fill_sparse_values(J_odom_pose_j.transpose()*J_odom_pose_j,pose_j_H_idx,pose_j_H_idx);
 
             //_H.block<3,3>(pose_j_H_idx,pose_j_H_idx) += J_odom_pose_j.transpose()*J_odom_pose_j;
-            // fill_triplet_list(H_triplets,J_odom_pose_j.transpose()*J_odom_pose_i,pose_j_H_idx,pose_i_H_idx);
-            fill_sparse_values(J_odom_pose_j.transpose()*J_odom_pose_i,pose_j_H_idx,pose_i_H_idx);
+            fill_triplet_list(H_triplets,J_odom_pose_j.transpose()*J_odom_pose_i,pose_j_H_idx,pose_i_H_idx);
+            // fill_sparse_values(J_odom_pose_j.transpose()*J_odom_pose_i,pose_j_H_idx,pose_i_H_idx);
 
             //_H.block<3,3>(pose_j_H_idx,pose_i_H_idx) += J_odom_pose_j.transpose()*J_odom_pose_i;                  
             
@@ -309,7 +308,7 @@ namespace pms {
             _b.segment<3>(pose_j_H_idx) += J_odom_pose_j.transpose() * odom_error;            
         }
         
-        // _H.setFromTriplets(H_triplets.begin(),H_triplets.end());
+        _H.setFromTriplets(H_triplets.begin(),H_triplets.end());
         _H.makeCompressed();
         //_b.setFromTriplets(b_triplets.begin(),b_triplets.end());
         
