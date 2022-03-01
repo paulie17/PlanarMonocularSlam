@@ -137,6 +137,7 @@ namespace pms{
             } 
 
             meas.detected_landmarks.clear();
+            meas.appearances.clear();
             meas.landmarks_img_pts.clear();
 
             while(std::getline(measurement_file,point_string)){
@@ -282,12 +283,14 @@ namespace pms{
         // Find all desc1 -> desc2 matches.
         typedef std::pair<float, int> MatchDistance;
         IntPairVector matches_;
+        float distance;
         std::vector<std::vector<MatchDistance> > match_distances(desc1.size());
-        
+        #pragma omp parallel for
+
         for (int i = 0; i < desc1.size(); i++) {
             match_distances[i].resize(desc2.size());
             for (int j = 0; j < desc2.size(); j++) {
-            const float distance = (desc1[i] - desc2[j]).squaredNorm();
+            distance = (desc1[i] - desc2[j]).squaredNorm();
             match_distances[i][j] = std::make_pair(distance, j);
             }
         }
@@ -315,6 +318,9 @@ namespace pms{
         IntPairVector unassigned_points;
         Vector10fVector unassigned_appearances;
         float dratio = 0.8f;
+
+        int index;
+        std::vector<int>::iterator iter;
         
         match_features(measurements[1].appearances, measurements[0].appearances,dratio,matches);	
         //now in matches we have a vector of pairs,
@@ -328,8 +334,7 @@ namespace pms{
             landmark_count ++;
         }	
 
-        std::vector<int>::iterator iter = measurements[1].detected_landmarks.begin();
-        int index;
+        iter = measurements[1].detected_landmarks.begin();        
 
         while ((iter = std::find(iter,measurements[1].detected_landmarks.end(),-1)) != measurements[1].detected_landmarks.end()){
             index = distance(measurements[1].detected_landmarks.begin(),iter);
