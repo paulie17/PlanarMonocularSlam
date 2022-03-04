@@ -172,7 +172,7 @@ namespace pms {
         for(int i = 0; i < n_rows; i++ ){
             for (int j = 0; j < n_cols; j++){
                 //std::cout << "i: " << i+row << ", j:" << j+column << ", val: " << mat(i,j) << std::endl;
-                triplets.push_back(T(i+row,j+column,mat(i,j)));
+                triplets.push_back(Eigen::Triplet<float>(i+row,j+column,mat(i,j)));
             }
         }
     }
@@ -199,6 +199,7 @@ namespace pms {
         tripletList H_triplets;  
 
         // Eigen::SparseQR<Eigen::SparseMatrix<float>, Eigen::COLAMDOrdering<int>> solver;      
+        // Eigen::SparseLU<Eigen::SparseMatrix<float>, Eigen::COLAMDOrdering<int>> solver;      
         // Eigen::SimplicialLDLT<Eigen::SparseMatrix<float>> solver;    
         // Eigen::SimplicialLLT<Eigen::SparseMatrix<float>,Eigen::Upper,Eigen::COLAMDOrdering<int>> solver; 
         // Eigen::SimplicialCholesky<Eigen::SparseMatrix<float>> solver;    
@@ -266,8 +267,8 @@ namespace pms {
                 //fill_triplet_list(b_triplets,J_proj_landmark.transpose() * proj_error,landmark_H_idx,0);
                 _b.segment<3>(landmark_H_idx) += J_proj_landmark.transpose() * proj_error;
             }
-        }        
-                        
+        }    
+
         for (int i = 0; i < (NUM_MEASUREMENTS-1); i++){
             
             pose_i_idx = i;
@@ -312,9 +313,9 @@ namespace pms {
         _H.makeCompressed();
         //_b.setFromTriplets(b_triplets.begin(),b_triplets.end());
         
-        // solver.compute(_H);
-        solver.analyzePattern(_H);   // for this step the numerical values of A are not used
-        solver.factorize(_H);
+        solver.compute(_H);
+        // solver.analyzePattern(_H);   // for this step the numerical values of A are not used
+        // solver.factorize(_H);
         if(solver.info()!=Eigen::Success) {
         // decomposition failed
         std::cout << "Decomposition failed! \n";

@@ -6,9 +6,8 @@
 #include <iostream>
 
 namespace pms {    
-
-    typedef Eigen::Triplet<float> T;
-    typedef std::vector<T> tripletList;
+    
+    typedef std::vector<Eigen::Triplet<float>, Eigen::aligned_allocator<Eigen::Triplet<float>>  > tripletList;
 
     typedef std::vector<Eigen::Vector4f, Eigen::aligned_allocator<Eigen::Vector4f> > Vector4fVector;
     typedef std::vector<Eigen::Vector3f, Eigen::aligned_allocator<Eigen::Vector3f> > Vector3fVector;

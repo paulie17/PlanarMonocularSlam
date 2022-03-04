@@ -34,7 +34,7 @@ int main(){
 
     pms_solver solver;
 
-    int n_iterations = 30;
+    int n_iterations = 50;
 
     load_trajectory(odom_trajectory,gt_trajectory);     
     
