@@ -60,7 +60,7 @@ namespace pms{
     
     void match_features(const Vector10fVector& desc1,
                     const Vector10fVector& desc2,
-                    const double ratio,
+                    const float ratio,
                     IntPairVector& matches);
     //return the number of landmarks(highest id)
     int data_association(MeasVector& measurements);

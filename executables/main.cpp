@@ -34,10 +34,10 @@ int main(){
 
     pms_solver solver;
 
-    int n_iterations = 50;
+    int n_iterations = 30;
 
-    load_trajectory(odom_trajectory,gt_trajectory);     
-    
+    load_trajectory(odom_trajectory,gt_trajectory); 
+
     prepare_for_plotting(odom_trajectory,x_traj,y_traj);
     prepare_for_plotting(gt_trajectory,x_traj_gt,y_traj_gt);
 
@@ -48,16 +48,17 @@ int main(){
     gp.send1d(boost::make_tuple(x_traj_gt, y_traj_gt));
     gp.send1d(boost::make_tuple(x_traj, y_traj));            
     cout << "Press any key to continue. \n";
-    cin.get();
-
+    cin.get();    
+    
     load_measurements(measurements);
+
+    cout << "Measurements loaded successfully! \n";
 
     landmarks_gt = load_landmarks_gt();
 
     n_of_landmarks = data_association(measurements);
-
+    
     landmarks = initial_guess(measurements,n_of_landmarks,discarded_landmarks);
-
     cout << n_of_landmarks << " have been detected, " << discarded_landmarks.size() << " have been discarded for lack of enough measurements necessary for tringulation. \n" ; 
 
     prepare_for_plotting(landmarks_gt,x_l_gt,y_l_gt,z_l_gt);
@@ -71,7 +72,7 @@ int main(){
     gp.send1d(boost::make_tuple(x_l, y_l, z_l));
     cout << "Press any key to continue. \n";
     cin.get();
-
+    
     solver.init(odom_trajectory,landmarks,measurements);
     solver.setProjKernelThreshold(1000.0f);
     solver.setOdomKernelThreshold(0.001f);

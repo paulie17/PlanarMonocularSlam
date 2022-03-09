@@ -255,7 +255,7 @@ namespace pms {
         }
         
         
-        //_H +=Eigen::MatrixXf::Identity(_state_size,_state_size)*_damping;
+        _H +=Eigen::MatrixXf::Identity(_state_size,_state_size)*_damping;
         //_delta_x.tail += _H.ldlt().solve(-_b);
         //if (lock_poses){
         //    const int subsys_size = _state_size - 3*NUM_MEASUREMENTS;
