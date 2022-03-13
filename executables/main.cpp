@@ -16,6 +16,7 @@ using namespace pms;
 int main(){
 
     int n_of_landmarks;
+    int n_measurements;
 
     Gnuplot gp;
     
@@ -34,9 +35,10 @@ int main(){
 
     pms_solver solver;
 
-    int n_iterations = 30;
+    int n_iterations = 50;
 
     load_trajectory(odom_trajectory,gt_trajectory); 
+    n_measurements = odom_trajectory.size();
 
     prepare_for_plotting(odom_trajectory,x_traj,y_traj);
     prepare_for_plotting(gt_trajectory,x_traj_gt,y_traj_gt);
@@ -50,7 +52,7 @@ int main(){
     cout << "Press any key to continue. \n";
     cin.get();    
     
-    load_measurements(measurements);
+    load_measurements(measurements,n_measurements);
 
     cout << "Measurements loaded successfully! \n";
 

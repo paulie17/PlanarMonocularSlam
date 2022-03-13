@@ -13,6 +13,7 @@ namespace pms{
         int seq;
 
         IntVector detected_landmarks;
+        IntVector detected_landmarks_gt;
         Vector10fVector appearances;
         Vector2fVector landmarks_img_pts;
         Vector3fVector bearings;
@@ -31,7 +32,7 @@ namespace pms{
     Camera load_camera_data();
 
     
-    void load_measurements(MeasVector& measurements);
+    void load_measurements(MeasVector& measurements, int NUM_MEASUREMENTS);
     
     Vector3fVector initial_guess(MeasVector& measurements,int NUM_LANDMARKS,IntVector& discarded);
 
@@ -66,7 +67,5 @@ namespace pms{
     int data_association(MeasVector& measurements);
 
     Vector3fVector load_landmarks_gt();
-
-    const int NUM_MEASUREMENTS = 172;
 
 }

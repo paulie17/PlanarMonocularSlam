@@ -442,10 +442,10 @@ int main(int argc, char **argv)
       des_rv = 0.0; des_tv = -0.1;
       break;
     case 'a':
-      des_rv = 0.1; des_tv = 0.02;
+      des_rv = 0.1; des_tv = 0.07;
       break;
     case 'd':
-      des_rv = -0.1; des_tv = 0.02;
+      des_rv = -0.1; des_tv = 0.07;
       break;
     default:
     cout << "Not a valid input! \n";

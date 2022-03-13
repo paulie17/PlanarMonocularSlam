@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 2.8)
 
 #ds project name
-project(testing_the_dataset)
+project(planar_monocular_slam)
 
 #ds set cmake build flags
-set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -O3") 
-#set(CMAKE_BUILD_TYPE Release)
-#set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -O3 -DNDEBUG") #ds enable all warnings, c++11 features, enable maximum optimization and disable debug symbols
+# set(CMAKE_BUILD_TYPE Debug)
+# set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -O3 ") 
+set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -O3 -DNDEBUG") #ds enable all warnings, c++11 features, enable maximum optimization and disable debug symbols
 
 #ds find and set up dependencies
 

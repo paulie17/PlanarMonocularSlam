@@ -72,5 +72,6 @@ namespace pms{
 
             int _state_size;
             int _n_of_landmarks;
+            int _n_of_measurements;
     };
 }

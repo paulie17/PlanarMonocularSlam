@@ -90,7 +90,7 @@ namespace pms{
         return cam;
     }
 
-    void load_measurements(MeasVector& measurements){        
+    void load_measurements(MeasVector& measurements, int NUM_MEASUREMENTS){        
     
         Measurement meas;
         std::string dummy_string,point_string;
@@ -137,6 +137,7 @@ namespace pms{
             } 
 
             meas.detected_landmarks.clear();
+            meas.detected_landmarks_gt.clear();
             meas.appearances.clear();
             meas.landmarks_img_pts.clear();
 
@@ -150,6 +151,7 @@ namespace pms{
                     // std::cout << "Pushing into measurement number " << meas.seq << ", the " << pt_idx << "th detected landmark, with appearance \n" << appearance << "\n and image point: \n" << img_pt << "\n";      
                     // std::cin.get();            
                     meas.detected_landmarks.push_back(int(-1));
+                    meas.detected_landmarks_gt.push_back(landmark_id_gt);
                     meas.appearances.push_back(appearance);
                     meas.landmarks_img_pts.push_back(img_pt);
                     point_stream.clear();
@@ -219,6 +221,7 @@ namespace pms{
         Eigen::Vector3f solution;
 
         Vector3fVector landmarks_initial_guess;
+        int NUM_MEASUREMENTS = measurements.size();
 
         A.setZero();
         b.setZero();
@@ -267,8 +270,8 @@ namespace pms{
             }
 
             if(n_of_corrispondences<2){
-                std::cout << "Landmark: "<< i << " has to be discarded, since there are "<< n_of_corrispondences << " corrispondences. \n";
-                std::cin.get();
+                // std::cout << "Landmark: "<< i << " has to be discarded, since there are "<< n_of_corrispondences << " corrispondences. \n";
+                // std::cin.get();
                 discarded.push_back(i);
                 solution << NAN,NAN,NAN;
             }
@@ -320,14 +323,22 @@ namespace pms{
 
         IntPairVector matches;
 
-        float dratio = 0.8;
+        float dratio = 0.2;
 
         std::vector<IntPairVector> all_matches;
+        int NUM_MEASUREMENTS = measurements.size();
+        Vector10fVector saved_appearances;
+        Vector10f appearance_to_save;
+
+        std::vector<int>::iterator iter;
+        // float n_of_observations = measurements[0].detected_landmarks.size();
+        // float n_of_correct_matches = 0;
 
         for(int i = 1; i < NUM_MEASUREMENTS;i++){
             matches.clear();
             match_features(measurements[i].appearances, measurements[i-1].appearances,dratio,matches);
             all_matches.push_back(matches);
+            // n_of_observations += measurements[i].detected_landmarks.size();
         }
         
         for(int i = 0; i < NUM_MEASUREMENTS-1; i++){
@@ -338,18 +349,54 @@ namespace pms{
 
                     measurements[i+1].detected_landmarks[all_matches[i][j].first] = landmark_count;
                     measurements[i].detected_landmarks[all_matches[i][j].second] = landmark_count;
+
+                    appearance_to_save = (measurements[i+1].appearances[all_matches[i][j].first] + measurements[i].appearances[all_matches[i][j].second])/2.0;
+                    saved_appearances.push_back(appearance_to_save);                    
                     landmark_count++;
                     // std::cout << "i: " << i <<", j: " << i+1 << ", n_pt: " << all_matches[i][j].second << ", " << all_matches[i][j].first << "  id:" << landmark_count << "\n";
                     // std::cin.get();
+                    // if(measurements[i].detected_landmarks_gt[all_matches[i][j].second]==measurements[i+1].detected_landmarks_gt[all_matches[i][j].first]){
+                    //     n_of_correct_matches += 2;
+                    // }
                 } else if (measurements[i].detected_landmarks[all_matches[i][j].second] != -1){
                     measurements[i+1].detected_landmarks[all_matches[i][j].first] = 
                                                             measurements[i].detected_landmarks[all_matches[i][j].second];
-                }
 
+                    saved_appearances[measurements[i].detected_landmarks[all_matches[i][j].second]] += measurements[i+1].appearances[all_matches[i][j].first];
+                    saved_appearances[measurements[i].detected_landmarks[all_matches[i][j].second]] /= 2.0;
+
+                    // if(measurements[i].detected_landmarks_gt[all_matches[i][j].second]==measurements[i+1].detected_landmarks_gt[all_matches[i][j].first]){
+                    //     n_of_correct_matches += 1;
+                    // }
+                }                
+            }
+
+            if(std::find(measurements[i+1].detected_landmarks.begin(),measurements[i+1].detected_landmarks.end(),-1) != measurements[i+1].detected_landmarks.end() ){
+                    matches.clear();
+                    match_features(measurements[i+1].appearances, saved_appearances,dratio,matches);
+                    for (int k = 0; k < matches.size(); k++){
+                        if (measurements[i+1].detected_landmarks[matches[k].first] == -1){
+                            measurements[i+1].detected_landmarks[matches[k].first] = matches[k].second;
+
+                            saved_appearances[matches[k].second] += measurements[i+1].appearances[matches[k].first];
+                            saved_appearances[matches[k].second] /= 2.0;
+                        }
+                    }
+            }
+
+            iter = measurements[i].detected_landmarks.begin();
+
+            while ((iter = std::find(iter,measurements[i].detected_landmarks.end(),-1)) != measurements[i].detected_landmarks.end()){
+
+                appearance_to_save = measurements[i].appearances[distance(measurements[i].detected_landmarks.begin(),iter)];
+                *iter = landmark_count;                
+                saved_appearances.push_back(appearance_to_save);
+                landmark_count ++;
+                iter ++;
             }
 
         }
-
+        // std::cout << "Percentage of correct matches: " << (n_of_correct_matches/n_of_observations) << "\n";
         return landmark_count+1;
     }
     

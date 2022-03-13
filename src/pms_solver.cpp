@@ -20,6 +20,7 @@ namespace pms {
                             const MeasVector& measurements){         
 
         _state_size = odom_traj.size()*3 + landmarks.size()*3;
+        _n_of_measurements = odom_traj.size();
         _damping=1;
         _n_of_landmarks = landmarks.size();                   
 
@@ -31,7 +32,7 @@ namespace pms {
         _b.resize(_state_size);  
         _delta_x.resize(_state_size);  
 
-        for (int k = 1; k < NUM_MEASUREMENTS; k++) {
+        for (int k = 1; k < _n_of_measurements; k++) {
             // TODO: displ can be determined more efficiently with
             //       [R^T(theta1)(t1-t0); theta1-theta0].
             Eigen::Vector3f displ = t2v(v2t((*_measurements)[k-1].odom_pose).inverse() *
@@ -149,7 +150,7 @@ namespace pms {
         Eigen::Vector3f pose_increment;
 
         for (int i = 0;i<_n_of_landmarks; i++){
-            landmark_idx = 3*NUM_MEASUREMENTS + (i)*3; 
+            landmark_idx = 3*_n_of_measurements + (i)*3; 
             
             if (isNan((*_landmarks_estimate)[i])){
             continue;
@@ -158,7 +159,7 @@ namespace pms {
             (*_landmarks_estimate)[i] += _delta_x.segment<3>(landmark_idx);
         }
 
-        for (int i = 0;i<NUM_MEASUREMENTS; i++){
+        for (int i = 0;i<_n_of_measurements; i++){
             pose_idx = (i)*3;
             pose_increment = _delta_x.segment<3>(pose_idx);
             (*_odom_traj_estimate)[i] = t2v(v2t(pose_increment)*
@@ -194,7 +195,7 @@ namespace pms {
         _chi_proj = 0.0;
 
         // process the projection measurements first
-        for(int i = 0; i<NUM_MEASUREMENTS; i++){
+        for(int i = 0; i<_n_of_measurements; i++){
             n_of_sensed_landmarks = (*_measurements)[i].landmarks_img_pts.size();
             for (int j = 0; j < n_of_sensed_landmarks; j++){
 
@@ -203,7 +204,7 @@ namespace pms {
 
                 is_valid = errorAndJacobian_proj( pose_idx, landmark_idx,
                                         J_proj_landmark,J_proj_pose,proj_error);
-                if (!is_valid){
+                if (!is_valid || landmark_idx < 0 ){
                     continue;
                 }
                 if (proj_error.squaredNorm() > _proj_kernel_threshold) {
@@ -213,9 +214,9 @@ namespace pms {
                 else
                 {_chi_proj += proj_error.transpose()*proj_error;} 
 
-                landmark_H_idx = 3*(NUM_MEASUREMENTS) + (landmark_idx)*3;
+                landmark_H_idx = 3*(_n_of_measurements) + (landmark_idx)*3;
                 pose_H_idx = (pose_idx)*3;
-
+                // std::cout << landmark_idx << " , " << pose_idx << "\n";
                 _H.block<3,3>(landmark_H_idx,landmark_H_idx) += J_proj_landmark.transpose()*J_proj_landmark;
                 _H.block<3,3>(landmark_H_idx,pose_H_idx) += J_proj_landmark.transpose()*J_proj_pose;
                 _H.block<3,3>(pose_H_idx,pose_H_idx) += J_proj_pose.transpose()*J_proj_pose;
@@ -227,7 +228,7 @@ namespace pms {
             }
         }        
                         
-        for (int i = 0; i < (NUM_MEASUREMENTS-1); i++){
+        for (int i = 0; i < (_n_of_measurements-1); i++){
             
             pose_i_idx = i;
             pose_j_idx = i + 1;
@@ -258,7 +259,7 @@ namespace pms {
         _H +=Eigen::MatrixXf::Identity(_state_size,_state_size)*_damping;
         //_delta_x.tail += _H.ldlt().solve(-_b);
         //if (lock_poses){
-        //    const int subsys_size = _state_size - 3*NUM_MEASUREMENTS;
+        //    const int subsys_size = _state_size - 3*_n_of_measurements;
         //    _delta_x.tail(subsys_size) = _H.bottomRightCorner(subsys_size, subsys_size).ldlt().solve(-_b.tail(subsys_size));
         //}
         //else
