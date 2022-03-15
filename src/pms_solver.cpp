@@ -13,8 +13,8 @@ namespace pms {
         _landmarks_estimate = 0;        
     }
 
-    void pms_solver::init(  Vector3fVector& odom_traj,
-                            Vector3fVector& landmarks,
+    void pms_solver::init(  Vector3dVector& odom_traj,
+                            Vector3dVector& landmarks,
                             const MeasVector& measurements){         
 
         _state_size = odom_traj.size()*3 + landmarks.size()*3;
@@ -32,7 +32,7 @@ namespace pms {
         for (int k = 1; k < NUM_MEASUREMENTS; k++) {
             // TODO: displ can be determined more efficiently with
             //       [R^T(theta1)(t1-t0); theta1-theta0].
-            Eigen::Vector3f displ = t2v(v2t((*_measurements)[k-1].odom_pose).inverse() *
+            Eigen::Vector3d displ = t2v(v2t((*_measurements)[k-1].odom_pose).inverse() *
                                        (v2t((*_measurements)[k].odom_pose)));            
             _odometry_displacements.push_back(displ);           
         }    
@@ -40,21 +40,21 @@ namespace pms {
 
     bool pms_solver::errorAndJacobian_proj( int pose_idx, 
                                         int landmark_idx,                                        
-                                        Matrix2_3f& J_proj_landmark,
-                                        Matrix2_3f& J_proj_pose,
-                                        Eigen::Vector2f& proj_error){
+                                        Matrix2_3d& J_proj_landmark,
+                                        Matrix2_3d& J_proj_pose,
+                                        Eigen::Vector2d& proj_error){
         bool is_inside;
 
-        Matrix2_3f J_pi;
+        Matrix2_3d J_pi;
 
-        Eigen::Vector3f landmark_estimate;
-        Eigen::Vector3f odom_pose_estimate;
-        Eigen::Vector3f p_hat;
+        Eigen::Vector3d landmark_estimate;
+        Eigen::Vector3d odom_pose_estimate;
+        Eigen::Vector3d p_hat;
 
-        Eigen::Vector2f proj_prediction;
-        Eigen::Vector2f proj_observation;                                                            
+        Eigen::Vector2d proj_prediction;
+        Eigen::Vector2d proj_observation;                                                            
 
-        Eigen::Isometry3f robot_to_world;
+        Eigen::Isometry3d robot_to_world;
 
         std::vector<int>::const_iterator j;       
         int k;                 
@@ -104,20 +104,20 @@ namespace pms {
 
     void pms_solver::errorAndJacobian_odom( int pose_i_idx, 
                                 int pose_j_idx, 
-                                Matrix6_3f& J_odom_pose_i,
-                                Matrix6_3f& J_odom_pose_j,
-                                Vector6f& odom_error){
+                                Matrix6_3d& J_odom_pose_i,
+                                Matrix6_3d& J_odom_pose_j,
+                                Vector6d& odom_error){
 
-        Eigen::Vector3f pose_i;
-        Eigen::Vector3f pose_j;
+        Eigen::Vector3d pose_i;
+        Eigen::Vector3d pose_j;
 
-        Eigen::Matrix2f R_i;
-        Eigen::Vector2f t_i;
+        Eigen::Matrix2d R_i;
+        Eigen::Vector2d t_i;
 
-        Eigen::Matrix2f R_j;
-        Eigen::Vector2f t_j;
+        Eigen::Matrix2d R_j;
+        Eigen::Vector2d t_j;
 
-        Eigen::Isometry2f Z;
+        Eigen::Isometry2d Z;
 
         J_odom_pose_j.setZero();
 
@@ -144,7 +144,7 @@ namespace pms {
     void pms_solver::boxplus(){
 
         int landmark_idx, pose_idx;
-        Eigen::Vector3f pose_increment;
+        Eigen::Vector3d pose_increment;
 
         for (int i = 0;i<_n_of_landmarks; i++){
             landmark_idx = 3*NUM_MEASUREMENTS + (i)*3; 
@@ -164,7 +164,7 @@ namespace pms {
         }
     }
 
-    void pms_solver::fill_triplet_list(tripletList& triplets, const Eigen::MatrixXf& mat, int row, int column){
+    void pms_solver::fill_triplet_list(tripletList& triplets, const Eigen::MatrixXd& mat, int row, int column){
         int n_rows = mat.rows();
         int n_cols = mat.cols();
 
@@ -172,12 +172,12 @@ namespace pms {
         for(int i = 0; i < n_rows; i++ ){
             for (int j = 0; j < n_cols; j++){
                 //std::cout << "i: " << i+row << ", j:" << j+column << ", val: " << mat(i,j) << std::endl;
-                triplets.push_back(Eigen::Triplet<float>(i+row,j+column,mat(i,j)));
+                triplets.push_back(Eigen::Triplet<double>(i+row,j+column,mat(i,j)));
             }
         }
     }
 
-    void pms_solver::fill_sparse_values(const Eigen::MatrixXf& mat, int row, int column){
+    void pms_solver::fill_sparse_values(const Eigen::MatrixXd& mat, int row, int column){
         int n_rows = mat.rows();
         int n_cols = mat.cols();
 
@@ -191,19 +191,35 @@ namespace pms {
     }
 
 
+    void pms_solver::add_prior(tripletList& triplets){
+
+        
+        for(int j = 0; j < _H.cols(); j += 2){
+            triplets.push_back(Eigen::Triplet<double>(0,j,1e12));
+            triplets.push_back(Eigen::Triplet<double>(j,0,1e12));
+        }
+
+        for(int j = 1; j < _H.cols(); j += 2){
+            triplets.push_back(Eigen::Triplet<double>(1,j,1e12));
+            triplets.push_back(Eigen::Triplet<double>(j,1,1e12));
+        }
+        
+        for(int j = 2; j < _H.cols(); j += 2){
+            triplets.push_back(Eigen::Triplet<double>(2,j,1e12));
+            triplets.push_back(Eigen::Triplet<double>(j,2,1e12));
+        }
+
+    }
+
     void pms_solver::one_round(){                
         
         _H.setZero();
         _b.setZero();  
         _delta_x.setZero(); 
         tripletList H_triplets;  
-
-        // Eigen::SparseQR<Eigen::SparseMatrix<float>, Eigen::COLAMDOrdering<int>> solver;      
-        // Eigen::SparseLU<Eigen::SparseMatrix<float>, Eigen::COLAMDOrdering<int>> solver;      
-        // Eigen::SimplicialLDLT<Eigen::SparseMatrix<float>> solver;    
-        // Eigen::SimplicialLLT<Eigen::SparseMatrix<float>,Eigen::Upper,Eigen::COLAMDOrdering<int>> solver; 
-        // Eigen::SimplicialCholesky<Eigen::SparseMatrix<float>> solver;    
-        Eigen::LeastSquaresConjugateGradient<Eigen::SparseMatrix<float>> solver;
+     
+        // Eigen::SimplicialLDLT<Eigen::SparseMatrix<double>> solver;    
+        Eigen::ConjugateGradient<Eigen::SparseMatrix<double>> solver;
 
         int n_of_sensed_landmarks;
         int landmark_idx, pose_idx;                        
@@ -215,17 +231,19 @@ namespace pms {
 
         bool is_valid;
 
-        Matrix2_3f J_proj_landmark;
-        Matrix2_3f J_proj_pose;
-        Eigen::Vector2f proj_error;        
+        Matrix2_3d J_proj_landmark;
+        Matrix2_3d J_proj_pose;
+        Eigen::Vector2d proj_error;        
 
-        Matrix6_3f J_odom_pose_i;
-        Matrix6_3f J_odom_pose_j;
-        Vector6f odom_error;                                     
+        Matrix6_3d J_odom_pose_i;
+        Matrix6_3d J_odom_pose_j;
+        Vector6d odom_error;                                     
 
         _chi_odom = 0.0;
         _chi_proj = 0.0;
 
+        add_prior(H_triplets);
+        
         // process the projection measurements first
         for(int i = 0; i<NUM_MEASUREMENTS; i++){
             n_of_sensed_landmarks = (*_measurements)[i].landmarks_img_pts.size();
@@ -326,7 +344,7 @@ namespace pms {
         }
         // std::cout << _b << std::endl;
         // std::cin.get();
-        //_H +=Eigen::MatrixXf::Identity(_state_size,_state_size)*_damping;
+        //_H +=Eigen::MatrixXd::Identity(_state_size,_state_size)*_damping;
         //_delta_x.tail += _H.ldlt().solve(-_b);
         //if (lock_poses){
         //    const int subsys_size = _state_size - 3*NUM_MEASUREMENTS;

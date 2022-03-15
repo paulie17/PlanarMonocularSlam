@@ -19,22 +19,22 @@ int main(){
 
     Gnuplot gp;
     
-    Vector3fVector odom_trajectory;
-    Vector3fVector gt_trajectory;
+    Vector3dVector odom_trajectory;
+    Vector3dVector gt_trajectory;
     MeasVector measurements;
-    Vector3fVector landmarks_gt;
+    Vector3dVector landmarks_gt;
 
-    Vector3fVector landmarks; 
+    Vector3dVector landmarks; 
 
-    FloatVector x_traj, y_traj;
-    FloatVector x_traj_gt, y_traj_gt;
-    FloatVector x_l_gt, y_l_gt, z_l_gt;
-    FloatVector x_l, y_l, z_l;
+    DoubleVector x_traj, y_traj;
+    DoubleVector x_traj_gt, y_traj_gt;
+    DoubleVector x_l_gt, y_l_gt, z_l_gt;
+    DoubleVector x_l, y_l, z_l;
     IntVector discarded_landmarks;
 
     pms_solver solver;
 
-    int n_iterations = 50;
+    int n_iterations = 30;
 
     load_trajectory(odom_trajectory,gt_trajectory);     
     

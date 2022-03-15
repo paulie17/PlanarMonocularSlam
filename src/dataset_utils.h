@@ -13,29 +13,29 @@ namespace pms{
         int seq;
 
         IntVector detected_landmarks;
-        Vector2fVector landmarks_img_pts;
-        Vector3fVector bearings;
+        Vector2dVector landmarks_img_pts;
+        Vector3dVector bearings;
 
-        Eigen::Vector3f odom_pose;
-        Eigen::Vector3f gt_pose;
+        Eigen::Vector3d odom_pose;
+        Eigen::Vector3d gt_pose;
     };
 
     typedef std::vector<Measurement, Eigen::aligned_allocator<Measurement> > MeasVector;
 
-    void load_trajectory(Vector3fVector& odom_trajectory, Vector3fVector& gt_trajectory);
+    void load_trajectory(Vector3dVector& odom_trajectory, Vector3dVector& gt_trajectory);
 
-    void load_camera_data(  int& z_near,int& z_far,int& width, int& height,
-                            Eigen::Matrix3f& camera_matrix, Eigen::Isometry3f& camera_to_robot);
+    void load_camera_data(  double& z_near,double& z_far,int& width, int& height,
+                            Eigen::Matrix3d& camera_matrix, Eigen::Isometry3d& camera_to_robot);
 
     Camera load_camera_data();
 
     //return the number of landmarks(highest id)
     int load_measurements(MeasVector& measurements);
     
-    Vector3fVector initial_guess(MeasVector& measurements,int NUM_LANDMARKS,IntVector& discarded);
+    Vector3dVector initial_guess(MeasVector& measurements,int NUM_LANDMARKS,IntVector& discarded);
 
     template <class T>
-    void prepare_for_plotting(const T& points,FloatVector& x, FloatVector& y, FloatVector& z){
+    void prepare_for_plotting(const T& points,DoubleVector& x, DoubleVector& y, DoubleVector& z){
         x.clear();
         y.clear();
         z.clear();
@@ -47,7 +47,7 @@ namespace pms{
         }
     }    
     template <class T>
-    void prepare_for_plotting(const T& points,FloatVector& x, FloatVector& y){
+    void prepare_for_plotting(const T& points,DoubleVector& x, DoubleVector& y){
         x.clear();
         y.clear();
         int num_points = points.size();
@@ -58,7 +58,7 @@ namespace pms{
     }    
     
 
-    Vector3fVector load_landmarks_gt();
+    Vector3dVector load_landmarks_gt();
 
     const int NUM_MEASUREMENTS = 200;
 

@@ -2,7 +2,7 @@
 
 namespace pms{
 
-    void load_trajectory(Vector3fVector& odom_trajectory, Vector3fVector& gt_trajectory){
+    void load_trajectory(Vector3dVector& odom_trajectory, Vector3dVector& gt_trajectory){
         
         std::istringstream ss;
         std::string dummy_string;
@@ -10,8 +10,8 @@ namespace pms{
         int current_pose;
         //float dummy_var;
           
-        Eigen::Vector3f odom_pose;
-        Eigen::Vector3f gt_pose;
+        Eigen::Vector3d odom_pose;
+        Eigen::Vector3d gt_pose;
 
         std::ifstream trajectory_file("../dataset/trajectory.dat");    
 
@@ -33,15 +33,15 @@ namespace pms{
         }
     }
 
-    void load_camera_data(  int& z_near,int& z_far, 
+    void load_camera_data(  double& z_near,double& z_far, 
                             int& width, int& height,
-                            Eigen::Matrix3f& camera_matrix, Eigen::Isometry3f& camera_to_robot){
+                            Eigen::Matrix3d& camera_matrix, Eigen::Isometry3d& camera_to_robot){
         
         std::string dummy_string;
 
-        Eigen::Matrix4f camera_Transform;
-        Eigen::Vector3f t;
-        Eigen::Matrix3f R;
+        Eigen::Matrix4d camera_Transform;
+        Eigen::Vector3d t;
+        Eigen::Matrix3d R;
 
         std::ifstream camera_file("../dataset/camera.dat");
         std::getline(camera_file, dummy_string);
@@ -74,15 +74,16 @@ namespace pms{
 
     Camera load_camera_data(){
         Camera cam;
-        int z_near, z_far, width, height;
-        Eigen::Matrix3f camera_matrix;
-        Eigen::Isometry3f camera_to_robot;
+        double z_near, z_far;
+        int width, height;
+        Eigen::Matrix3d camera_matrix;
+        Eigen::Isometry3d camera_to_robot;
 
         load_camera_data(z_near,z_far,width,height,camera_matrix,camera_to_robot);
 
         cam.setCameraMatrix(camera_matrix);
         cam.setImageSize(height,width);
-
+        cam.setDistanceLimits(z_near,z_far);
         // set camera_to_robot as the pose matrix for the moment;
         // later in the solver you can rotate/translate using the robot position.
         cam.setCameraToWorldPose(camera_to_robot);
@@ -95,7 +96,7 @@ namespace pms{
         Measurement meas;
         std::string dummy_string,point_string;
 
-        Eigen::Vector2f img_pt;  
+        Eigen::Vector2d img_pt;  
         int pt_idx,landmark_id;  
 
         std::ifstream measurement_file;
@@ -105,17 +106,17 @@ namespace pms{
         std::string measurement_filename;
 
         //Declare variables to import camera data
-        Eigen::Matrix3f cameraMatrix;
-        Eigen::Matrix4f camera_Transform;
-        Eigen::Isometry3f camera_to_robot;
+        Eigen::Matrix3d cameraMatrix;
+        Eigen::Matrix4d camera_Transform;
+        Eigen::Isometry3d camera_to_robot;
 
-        Eigen::Isometry2f robot_to_world_2d;
-        Eigen::Isometry3f robot_to_world_3d;
+        Eigen::Isometry2d robot_to_world_2d;
+        Eigen::Isometry3d robot_to_world_3d;
         
-        Eigen::Isometry3f camera_to_world;
+        Eigen::Isometry3d camera_to_world;
 
 
-        int z_near,z_far;
+        double z_near,z_far;
         int width, height;
         int n_of_landmarks = 0;
         
@@ -166,18 +167,19 @@ namespace pms{
             measurements[i].current_camera_position.setCameraToWorldPose(camera_to_world);
             measurements[i].current_camera_position.setImageSize(height,width);
             measurements[i].current_camera_position.setCameraMatrix(cameraMatrix);
+            measurements[i].current_camera_position.setDistanceLimits(z_near,z_far);
             measurements[i].bearings = measurements[i].current_camera_position.bearings_from_img_points(measurements[i].landmarks_img_pts);
         }
         
         return n_of_landmarks+1;
     }
 
-    Vector3fVector load_landmarks_gt(){
+    Vector3dVector load_landmarks_gt(){
         std::string dummy_string;
         int current_idx;
 
-        Vector3fVector landmarks_gt;  
-        Eigen::Vector3f current_landmark;
+        Vector3dVector landmarks_gt;  
+        Eigen::Vector3d current_landmark;
 
         std::ifstream world_file("../dataset/world.dat");    
 
@@ -196,25 +198,25 @@ namespace pms{
         return landmarks_gt;
     }
 
-    Vector3fVector initial_guess(MeasVector& measurements,int NUM_LANDMARKS, IntVector& discarded) {
+    Vector3dVector initial_guess(MeasVector& measurements,int NUM_LANDMARKS, IntVector& discarded) {
         
         // algorithm from
         // Slabaugh, Greg, Ron Schafer, and Mark Livingston. "Optimal ray intersection for computing 3d points from n-view correspondences." 
         // Deliverable Report (2001): 1-11.
 
-        Eigen::Vector3f current_bearing;
-        Eigen::Vector3f current_camera;
+        Eigen::Vector3d current_bearing;
+        Eigen::Vector3d current_camera;
 
         std::vector<int>::iterator it;
         int k;
 
         int n_of_corrispondences;
 
-        Eigen::Matrix3f A;
-        Eigen::Vector3f b;
-        Eigen::Vector3f solution;
+        Eigen::Matrix3d A;
+        Eigen::Vector3d b;
+        Eigen::Vector3d solution;
 
-        Vector3fVector landmarks_initial_guess;
+        Vector3dVector landmarks_initial_guess;
 
         A.setZero();
         b.setZero();
