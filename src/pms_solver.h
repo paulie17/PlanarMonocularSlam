@@ -15,7 +15,8 @@ namespace pms{
 
             void init(  Vector3dVector& odom_traj,
                         Vector3dVector& landmarks,
-                        const MeasVector& measurements);
+                        const MeasVector& measurements,
+                        const std::map<int,int>& map);
     
             inline double ProjkernelThreshold() const {return _proj_kernel_threshold;}
 
@@ -63,6 +64,7 @@ namespace pms{
             const MeasVector* _measurements;
             Vector3dVector* _odom_traj_estimate;
             Vector3dVector* _landmarks_estimate;
+            const std::map<int,int>* _id_to_index_Map;
 
             Eigen::Isometry3d _camera_to_robot;
             

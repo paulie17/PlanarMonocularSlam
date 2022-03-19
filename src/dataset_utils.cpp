@@ -277,4 +277,28 @@ namespace pms{
         }
         return landmarks_initial_guess;
     }
+
+    void make_map(IntVector& discarded, int NUM_LANDMARKS, std::map<int,int>& id_to_index_Map){
+
+        IntVector ids;
+        boost::range::push_back(ids, boost::irange(0,NUM_LANDMARKS));
+        
+        IntVector difference(NUM_LANDMARKS);
+        std::vector<int>::iterator it;
+        it = std::set_difference(ids.begin(), ids.end(),discarded.begin(), discarded.end(), difference.begin());
+        difference.resize(it-difference.begin());
+
+        int j = 0;
+        for ( int i = 0; i < difference.size(); i ++){
+
+            while(std::find(discarded.begin(),discarded.end(),j) != discarded.end()){
+                j ++;
+            }
+
+            id_to_index_Map.insert(std::make_pair(j,i));
+            // std::cout << id_to_index_Map[j] << "\n";
+            j++;
+        }
+
+    }
 }

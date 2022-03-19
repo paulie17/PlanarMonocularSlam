@@ -3,6 +3,10 @@
 #include "camera.h"
 #include <fstream>
 #include <iomanip>
+#include <boost/range/algorithm.hpp>
+#include <boost/range/algorithm_ext.hpp>
+#include <boost/range/irange.hpp>
+
 
 namespace pms{
 
@@ -59,6 +63,8 @@ namespace pms{
     
 
     Vector3dVector load_landmarks_gt();
+
+    void make_map(IntVector& discarded, int NUM_LANDMARKS, std::map<int,int>& index_to_id_Map);
 
     const int NUM_MEASUREMENTS = 200;
 

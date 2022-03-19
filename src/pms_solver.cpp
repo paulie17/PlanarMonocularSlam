@@ -11,19 +11,22 @@ namespace pms {
         _measurements = 0;
         _odom_traj_estimate = 0;
         _landmarks_estimate = 0;        
+        _id_to_index_Map = 0;
     }
 
     void pms_solver::init(  Vector3dVector& odom_traj,
                             Vector3dVector& landmarks,
-                            const MeasVector& measurements){         
+                            const MeasVector& measurements,
+                            const std::map<int,int>& map ){         
 
-        _state_size = odom_traj.size()*3 + landmarks.size()*3;
-        _damping=1;
-        _n_of_landmarks = landmarks.size();                   
+        _state_size = odom_traj.size()*3 + map.size()*3;
+        _damping=1;                        
 
         _odom_traj_estimate = &odom_traj;
         _landmarks_estimate = &landmarks;
         _measurements = &measurements;     
+        _id_to_index_Map = &map;
+        _n_of_landmarks = landmarks.size();   
 
         _H.resize(_state_size,_state_size);
         _b.resize(_state_size);  
@@ -147,12 +150,12 @@ namespace pms {
         Eigen::Vector3d pose_increment;
 
         for (int i = 0;i<_n_of_landmarks; i++){
-            landmark_idx = 3*NUM_MEASUREMENTS + (i)*3; 
-            
-            if (isNan((*_landmarks_estimate)[i])){
+                        
+            if ( (*_id_to_index_Map).find(i) == ((*_id_to_index_Map).end()) ){
             continue;
             }
 
+            landmark_idx = 3*NUM_MEASUREMENTS + (*_id_to_index_Map).at(i)*3; 
             (*_landmarks_estimate)[i] += _delta_x.segment<3>(landmark_idx);
         }
 
@@ -248,8 +251,12 @@ namespace pms {
         for(int i = 0; i<NUM_MEASUREMENTS; i++){
             n_of_sensed_landmarks = (*_measurements)[i].landmarks_img_pts.size();
             for (int j = 0; j < n_of_sensed_landmarks; j++){
-
+                
                 landmark_idx = (*_measurements)[i].detected_landmarks[j];
+                // std::cout << landmark_idx << std::endl;
+                if ( (*_id_to_index_Map).find(landmark_idx) == (*_id_to_index_Map).end() ){
+                continue;
+                }
                 pose_idx = (*_measurements)[i].seq;      
 
                 is_valid = errorAndJacobian_proj( pose_idx, landmark_idx,
@@ -264,7 +271,7 @@ namespace pms {
                 else
                 {_chi_proj += proj_error.transpose()*proj_error;} 
 
-                landmark_H_idx = 3*(NUM_MEASUREMENTS) + (landmark_idx)*3;
+                landmark_H_idx = 3*(NUM_MEASUREMENTS) + (*_id_to_index_Map).at(landmark_idx)*3;
                 pose_H_idx = (pose_idx)*3;
                 
                 fill_triplet_list(H_triplets,J_proj_landmark.transpose()*J_proj_landmark,landmark_H_idx,landmark_H_idx);
